@@ -41,7 +41,7 @@ const VentureItem = ({ venture }) => {
       <div className="venture-item">
         <div className="venture-item__content">
           <div className="venture-item__image">
-            <img src={venture.imageUrl} alt={venture.title}></img>
+            <img src={venture.image} alt={venture.title}></img>
           </div>
           <div className="venture-item__info">
             <h2>{venture.title}</h2>
