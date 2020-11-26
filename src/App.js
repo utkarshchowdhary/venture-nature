@@ -1,25 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useCallback } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
-function App() {
+import Header from './components/Header/Header';
+import UsersPage from './pages/UsersPage/UsersPage';
+import NewVenturePage from './pages/NewVenturePage/NewVenturePage';
+import UserVenturesPage from './pages/UserVenturesPage/UserVenturesPage';
+import UpdateVenturePage from './pages/UpdateVenturePage/UpdateVenturePage';
+import SignInAndSignUpPage from './pages/SignInAndSignUpPage/SignInAndSignUpPage';
+import AuthContext from './context/AuthContext';
+
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const login = useCallback(() => {
+    setIsLoggedIn(true);
+  }, []);
+
+  const logout = useCallback(() => {
+    setIsLoggedIn(false);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+      <Router>
+        <Header />
+        <main>
+          <Switch>
+            <Route path="/" component={UsersPage} exact />
+            <Route
+              path="/auth"
+              render={() =>
+                !isLoggedIn ? <SignInAndSignUpPage /> : <Redirect to="/" />
+              }
+              exact
+            />
+            <Route
+              path="/:userId/ventures"
+              component={UserVenturesPage}
+              exact
+            />
+            <Route
+              path="/ventures/new"
+              render={() =>
+                isLoggedIn ? <NewVenturePage /> : <Redirect to="/auth" />
+              }
+              exact
+            />
+            <Route
+              path="/ventures/:ventureId"
+              render={() =>
+                isLoggedIn ? <UpdateVenturePage /> : <Redirect to="/auth" />
+              }
+              exact
+            />
+            <Redirect to="/" />
+          </Switch>
+        </main>
+      </Router>
+    </AuthContext.Provider>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,23 @@
+.users-list {
+  margin: 0 auto;
+  padding: 0;
+  width: 90vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .users-list__empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    width: 17rem;
+    height: 8rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 6px;
+    padding: 1rem;
+    color: #f7f4e9;
+    background: #292929;
+  }
+}

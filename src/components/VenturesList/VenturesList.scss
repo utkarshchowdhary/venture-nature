@@ -1,0 +1,28 @@
+.ventures-list {
+  margin: 0 auto;
+  width: 90vw;
+  max-width: 40rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ventures-list__empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  width: 22rem;
+  min-height: 8rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 6px;
+  padding: 1rem;
+  color: #f7f4e9;
+  background: #425664;
+
+  button {
+    margin-bottom: 1rem;
+  }
+}
