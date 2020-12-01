@@ -8,7 +8,7 @@ import Button from '../Button/Button';
 
 import './MapModal.scss';
 
-const MapModal = ({ show, address, onCancel, location: { lng, lat } }) => {
+const MapModal = ({ show, location, onCancel }) => {
   const content = (
     <>
       {show && <Backdrop close={onCancel} />}
@@ -21,10 +21,10 @@ const MapModal = ({ show, address, onCancel, location: { lng, lat } }) => {
       >
         <div className="map-modal">
           <div className="map-modal__header">
-            <h2>{address}</h2>
+            <h2>{location.formattedAddress}</h2>
           </div>
           <div className="map-modal__content">
-            <Map center={[lng, lat]} zoom={10} />
+            <Map center={location.coordinates} zoom={10} />
           </div>
           <div className="map-modal__actions">
             <Button onClick={onCancel}>Close</Button>

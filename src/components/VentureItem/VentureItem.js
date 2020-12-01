@@ -30,7 +30,6 @@ const VentureItem = ({ venture }) => {
       <MapModal
         show={showMap}
         onCancel={closeMapHandler}
-        address={venture.address}
         location={venture.location}
       />
       <DeleteModal
@@ -45,7 +44,7 @@ const VentureItem = ({ venture }) => {
           </div>
           <div className="venture-item__info">
             <h2>{venture.title}</h2>
-            <h3>{venture.address}</h3>
+            <h3>{venture.location.formattedAddress}</h3>
             <p>{venture.description}</p>
           </div>
           <div className="venture-item__actions">
