@@ -12,8 +12,8 @@ const SignIn = () => {
   const auth = useContext(AuthContext);
   const [formState, inputHandler] = useForm(
     {
-      beEmail: { value: '', isValid: false },
-      bePassword: { value: '', isValid: false },
+      hasEmail: { value: '', isValid: false },
+      hasPassword: { value: '', isValid: false },
     },
     false
   );
@@ -32,7 +32,7 @@ const SignIn = () => {
         <form onSubmit={signInSubmitHandler}>
           <Input
             element="input"
-            id="beEmail"
+            id="hasEmail"
             type="email"
             label="Email"
             autoComplete="username"
@@ -42,7 +42,7 @@ const SignIn = () => {
           />
           <Input
             element="input"
-            id="bePassword"
+            id="hasPassword"
             type="password"
             label="Password"
             autoComplete="current-password"
