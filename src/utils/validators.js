@@ -1,5 +1,4 @@
 export const VALIDATOR_REQUIRE = () => ({ type: 'REQUIRE' });
-export const VALIDATOR_FILE = () => ({ type: 'FILE' });
 export const VALIDATOR_MINLENGTH = (val) => ({
   type: 'MINLENGTH',
   val,
