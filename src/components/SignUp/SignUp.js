@@ -22,8 +22,8 @@ const SignUp = () => {
   const [formState, inputHandler] = useForm(
     {
       name: { value: '', isValid: false },
-      signupemail: { value: '', isValid: false },
-      signuppassword: { value: '', isValid: false }
+      signUpEmail: { value: '', isValid: false },
+      signUpPassword: { value: '', isValid: false }
     },
     false
   )
@@ -40,8 +40,8 @@ const SignUp = () => {
         },
         body: JSON.stringify({
           name: formState.inputs.name.value,
-          email: formState.inputs.signupemail.value,
-          password: formState.inputs.signuppassword.value
+          email: formState.inputs.signUpEmail.value,
+          password: formState.inputs.signUpPassword.value
         })
       })
 
@@ -81,7 +81,7 @@ const SignUp = () => {
             />
             <Input
               element="input"
-              id="signupemail"
+              id="signUpEmail"
               type="email"
               label="Email"
               autoComplete="username"
@@ -91,7 +91,7 @@ const SignUp = () => {
             />
             <Input
               element="input"
-              id="signuppassword"
+              id="signUpPassword"
               type="password"
               label="Password"
               autoComplete="new-password"

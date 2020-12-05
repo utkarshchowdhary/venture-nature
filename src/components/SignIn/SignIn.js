@@ -17,8 +17,8 @@ const SignIn = () => {
 
   const [formState, inputHandler] = useForm(
     {
-      signinemail: { value: '', isValid: false },
-      signinpassword: { value: '', isValid: false }
+      signInEmail: { value: '', isValid: false },
+      signInPassword: { value: '', isValid: false }
     },
     false
   )
@@ -34,8 +34,8 @@ const SignIn = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          email: formState.inputs.signinemail.value,
-          password: formState.inputs.signinpassword.value
+          email: formState.inputs.signInEmail.value,
+          password: formState.inputs.signInPassword.value
         })
       })
 
@@ -66,7 +66,7 @@ const SignIn = () => {
           <form onSubmit={signInSubmitHandler}>
             <Input
               element="input"
-              id="signinemail"
+              id="signInEmail"
               type="email"
               label="Email"
               autoComplete="username"
@@ -76,7 +76,7 @@ const SignIn = () => {
             />
             <Input
               element="input"
-              id="signinpassword"
+              id="signInPassword"
               type="password"
               label="Password"
               autoComplete="current-password"
