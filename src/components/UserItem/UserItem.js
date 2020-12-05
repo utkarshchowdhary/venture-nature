@@ -6,7 +6,7 @@ import Avatar from '../Avatar/Avatar'
 import './UserItem.scss'
 
 const UserItem = ({ user, history, match }) => {
-  const { id, image, name, ventureCount } = user
+  const { id, name, ventures } = user
   return (
     <div
       className="user-item"
@@ -14,12 +14,15 @@ const UserItem = ({ user, history, match }) => {
     >
       <div className="user-item__content">
         <div className="user-item__image">
-          <Avatar image={image} alt={name} />
+          <Avatar
+            image={`http://localhost:5000/users/${id}/avatar`}
+            alt={name}
+          />
         </div>
         <div className="user-item__info">
           <h2>{name}</h2>
           <h3>
-            {ventureCount} {ventureCount === 1 ? 'Venture' : 'Ventures'}
+            {ventures.length} {ventures.length === 1 ? 'Venture' : 'Ventures'}
           </h3>
         </div>
       </div>

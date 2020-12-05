@@ -31,8 +31,8 @@ const SignUp = () => {
   const signUpSubmitHandler = async (e) => {
     e.preventDefault()
 
+    setIsLoading(true)
     try {
-      setIsLoading(true)
       const response = await fetch('http://localhost:5000/users/signup', {
         method: 'POST',
         headers: {
