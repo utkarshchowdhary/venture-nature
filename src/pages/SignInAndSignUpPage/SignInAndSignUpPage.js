@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import SignIn from '../../components/SignIn/SignIn';
-import SignUp from '../../components/SignUp/SignUp';
+import SignIn from '../../components/SignIn/SignIn'
+import SignUp from '../../components/SignUp/SignUp'
 
-import './SignInAndSignUpPage.scss';
+import './SignInAndSignUpPage.scss'
 
 const SignInAndSignUpPage = () => {
   return (
@@ -11,7 +11,7 @@ const SignInAndSignUpPage = () => {
       <SignIn />
       <SignUp />
     </div>
-  );
-};
+  )
+}
 
-export default SignInAndSignUpPage;
+export default SignInAndSignUpPage

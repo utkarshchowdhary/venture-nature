@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import Button from '../Button/Button';
-import VentureItem from '../VentureItem/VentureItem';
+import Button from '../Button/Button'
+import VentureItem from '../VentureItem/VentureItem'
 
-import './VenturesList.scss';
+import './VenturesList.scss'
 
 const VenturesList = ({ ventures }) => {
   return (
@@ -18,7 +18,7 @@ const VenturesList = ({ ventures }) => {
         <VentureItem key={venture.id} venture={venture} />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default VenturesList;
+export default VenturesList

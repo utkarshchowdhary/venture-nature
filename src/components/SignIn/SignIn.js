@@ -1,28 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
 
-import Input from '../Input/Input';
-import Button from '../Button/Button';
-import { VALIDATOR_MINLENGTH, VALIDATOR_EMAIL } from '../../utils/validators';
-import useForm from '../../hooks/useForm';
-import AuthContext from '../../context/AuthContext';
+import Input from '../Input/Input'
+import Button from '../Button/Button'
+import { VALIDATOR_MINLENGTH, VALIDATOR_EMAIL } from '../../utils/validators'
+import useForm from '../../hooks/useForm'
+import AuthContext from '../../context/AuthContext'
 
-import './SignIn.scss';
+import './SignIn.scss'
 
 const SignIn = () => {
-  const auth = useContext(AuthContext);
+  const auth = useContext(AuthContext)
   const [formState, inputHandler] = useForm(
     {
       hasEmail: { value: '', isValid: false },
-      hasPassword: { value: '', isValid: false },
+      hasPassword: { value: '', isValid: false }
     },
     false
-  );
+  )
 
   const signInSubmitHandler = (e) => {
-    e.preventDefault();
-    console.log(formState);
-    auth.login();
-  };
+    e.preventDefault()
+    console.log(formState)
+    auth.login()
+  }
 
   return (
     <div className="sign-in">
@@ -56,7 +56,7 @@ const SignIn = () => {
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn

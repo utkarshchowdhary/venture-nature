@@ -1,26 +1,26 @@
-import React from 'react';
+import React from 'react'
 
-import Button from '../../components/Button/Button';
-import Input from '../../components/Input/Input';
-import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../utils/validators';
-import useForm from '../../hooks/useForm';
+import Button from '../../components/Button/Button'
+import Input from '../../components/Input/Input'
+import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../utils/validators'
+import useForm from '../../hooks/useForm'
 
-import './NewVenturePage.scss';
+import './NewVenturePage.scss'
 
 const NewVenturePage = () => {
   const [formState, inputHandler] = useForm(
     {
       title: { value: '', isValid: false },
       description: { value: '', isValid: false },
-      address: { value: '', isValid: false },
+      address: { value: '', isValid: false }
     },
     false
-  );
+  )
 
   const ventureNewSubmitHandler = (e) => {
-    e.preventDefault();
-    console.log(formState.inputs);
-  };
+    e.preventDefault()
+    console.log(formState.inputs)
+  }
 
   return (
     <div className="new-venture-page">
@@ -57,7 +57,7 @@ const NewVenturePage = () => {
         </Button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default NewVenturePage;
+export default NewVenturePage

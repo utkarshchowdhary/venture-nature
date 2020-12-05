@@ -1,19 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import './Button.scss';
+import './Button.scss'
 
 const Button = (props) => {
   const className = `button button--${props.size || 'default'} ${
     props.inverse && 'button--inverse'
-  } ${props.danger && 'button--danger'}`;
+  } ${props.danger && 'button--danger'}`
 
   if (props.href) {
     return (
       <a className={className} href={props.href}>
         {props.children}
       </a>
-    );
+    )
   }
 
   if (props.to) {
@@ -21,7 +21,7 @@ const Button = (props) => {
       <Link to={props.to} exact={props.exact} className={className}>
         {props.children}
       </Link>
-    );
+    )
   }
 
   return (
@@ -33,7 +33,7 @@ const Button = (props) => {
     >
       {props.children}
     </button>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
-import HeaderMenu from '../HeaderMenu/HeaderMenu';
-import HeaderSideDrawer from '../HeaderSideDrawer/HeaderSideDrawer';
+import HeaderMenu from '../HeaderMenu/HeaderMenu'
+import HeaderSideDrawer from '../HeaderSideDrawer/HeaderSideDrawer'
 
-import './Header.scss';
+import './Header.scss'
 
 const Header = () => {
-  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false)
 
   const openDrawerHandler = () => {
-    setDrawerIsOpen(true);
-  };
+    setDrawerIsOpen(true)
+  }
 
   const closeDrawerHandler = () => {
-    setDrawerIsOpen(false);
-  };
+    setDrawerIsOpen(false)
+  }
 
   return (
     <>
@@ -40,7 +40,7 @@ const Header = () => {
         <HeaderMenu />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

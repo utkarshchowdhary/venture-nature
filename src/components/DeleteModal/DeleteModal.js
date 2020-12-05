@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { CSSTransition } from 'react-transition-group';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { CSSTransition } from 'react-transition-group'
 
-import Backdrop from '../Backdrop/Backdrop';
-import Button from '../Button/Button';
+import Backdrop from '../Backdrop/Backdrop'
+import Button from '../Button/Button'
 
-import './DeleteModal.scss';
+import './DeleteModal.scss'
 
 const DeleteModal = ({ show, onCancel, onConfirmDelete }) => {
   const content = (
@@ -39,9 +39,9 @@ const DeleteModal = ({ show, onCancel, onConfirmDelete }) => {
         </div>
       </CSSTransition>
     </>
-  );
+  )
 
-  return ReactDOM.createPortal(content, document.getElementById('modal-hook'));
-};
+  return ReactDOM.createPortal(content, document.getElementById('modal-hook'))
+}
 
-export default DeleteModal;
+export default DeleteModal

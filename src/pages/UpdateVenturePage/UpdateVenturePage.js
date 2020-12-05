@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { withRouter } from 'react-router-dom'
 
-import Input from '../../components/Input/Input';
-import Button from '../../components/Button/Button';
-import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../utils/validators';
-import useForm from '../../hooks/useForm';
+import Input from '../../components/Input/Input'
+import Button from '../../components/Button/Button'
+import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../utils/validators'
+import useForm from '../../hooks/useForm'
 
-import './UpdateVenturePage.scss';
+import './UpdateVenturePage.scss'
 
 const ventures = [
   {
@@ -17,9 +17,9 @@ const ventures = [
     address: '20 W 34th St, New York, NY 10001',
     location: {
       lat: 40.7484,
-      lng: -73.9857,
+      lng: -73.9857
     },
-    creator: 'u1',
+    creator: 'u1'
   },
   {
     id: 'u2',
@@ -30,50 +30,50 @@ const ventures = [
     address: 'Piazza del Duomo, 56126 Pisa PI, Italy',
     location: {
       lat: 43.723,
-      lng: 10.3966,
+      lng: 10.3966
     },
-    creator: 'u2',
-  },
-];
+    creator: 'u2'
+  }
+]
 
 const UpdateVenturePage = ({ match }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true)
   const [formState, inputHandler, setFormData] = useForm(
     {
       title: { value: '', isValid: false },
-      description: { value: '', isValid: false },
+      description: { value: '', isValid: false }
     },
     false
-  );
+  )
 
   const identifiedVenture = ventures.find(
     (venture) => venture.id === match.params.ventureId
-  );
+  )
 
   useEffect(() => {
     if (identifiedVenture) {
       setFormData(
         {
           title: { value: identifiedVenture.title, isValid: true },
-          description: { value: identifiedVenture.description, isValid: true },
+          description: { value: identifiedVenture.description, isValid: true }
         },
         true
-      );
+      )
     }
-    setIsLoading(false);
-  }, [setFormData, identifiedVenture]);
+    setIsLoading(false)
+  }, [setFormData, identifiedVenture])
 
   const ventureUpdateSubmitHandler = (e) => {
-    e.preventDefault();
-    console.log(formState.inputs);
-  };
+    e.preventDefault()
+    console.log(formState.inputs)
+  }
 
   if (!identifiedVenture) {
-    return <h2>Could not find venture!</h2>;
+    return <h2>Could not find venture!</h2>
   }
 
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <h2>Loading...</h2>
   }
 
   return (
@@ -106,7 +106,7 @@ const UpdateVenturePage = ({ match }) => {
         </Button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default withRouter(UpdateVenturePage);
+export default withRouter(UpdateVenturePage)

@@ -1,12 +1,12 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React from 'react'
+import { withRouter } from 'react-router-dom'
 
-import Avatar from '../Avatar/Avatar';
+import Avatar from '../Avatar/Avatar'
 
-import './UserItem.scss';
+import './UserItem.scss'
 
 const UserItem = ({ user, history, match }) => {
-  const { id, image, name, ventureCount } = user;
+  const { id, image, name, ventureCount } = user
   return (
     <div
       className="user-item"
@@ -24,7 +24,7 @@ const UserItem = ({ user, history, match }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default withRouter(UserItem);
+export default withRouter(UserItem)

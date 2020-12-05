@@ -1,29 +1,29 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react'
 
-import MapModal from '../MapModal/MapModal';
-import DeleteModal from '../DeleteModal/DeleteModal';
-import Button from '../Button/Button';
-import AuthContext from '../../context/AuthContext';
+import MapModal from '../MapModal/MapModal'
+import DeleteModal from '../DeleteModal/DeleteModal'
+import Button from '../Button/Button'
+import AuthContext from '../../context/AuthContext'
 
-import './VentureItem.scss';
+import './VentureItem.scss'
 
 const VentureItem = ({ venture }) => {
-  const auth = useContext(AuthContext);
-  const [showMap, setShowMap] = useState(false);
-  const [showDeleteWarning, setShowDeleteWarning] = useState(false);
+  const auth = useContext(AuthContext)
+  const [showMap, setShowMap] = useState(false)
+  const [showDeleteWarning, setShowDeleteWarning] = useState(false)
 
-  const openMapHandler = () => setShowMap(true);
+  const openMapHandler = () => setShowMap(true)
 
-  const closeMapHandler = () => setShowMap(false);
+  const closeMapHandler = () => setShowMap(false)
 
-  const showDeleteWarningHandler = () => setShowDeleteWarning(true);
+  const showDeleteWarningHandler = () => setShowDeleteWarning(true)
 
-  const cancelDeleteWarningHandler = () => setShowDeleteWarning(false);
+  const cancelDeleteWarningHandler = () => setShowDeleteWarning(false)
 
   const confirmDeleteHandler = () => {
-    setShowDeleteWarning(false);
-    console.log('Deleting...');
-  };
+    setShowDeleteWarning(false)
+    console.log('Deleting...')
+  }
 
   return (
     <>
@@ -63,7 +63,7 @@ const VentureItem = ({ venture }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default VentureItem;
+export default VentureItem

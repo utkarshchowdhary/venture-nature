@@ -1,49 +1,49 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect } from 'react'
 
-import { validate } from '../../utils/validators';
+import { validate } from '../../utils/validators'
 
-import './Input.scss';
+import './Input.scss'
 
 const inputReducer = (state, action) => {
   switch (action.type) {
     case 'INPUT_TOUCH':
-      return { ...state, isTouched: true };
+      return { ...state, isTouched: true }
     case 'INPUT_CHANGE':
       return {
         ...state,
         value: action.val,
-        isValid: validate(action.val, action.validators),
-      };
+        isValid: validate(action.val, action.validators)
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
 const Input = (props) => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue || '',
     isTouched: false,
-    isValid: props.initialValid || false,
-  });
+    isValid: props.initialValid || false
+  })
 
-  const { id, onInput } = props;
-  const { value, isValid } = inputState;
+  const { id, onInput } = props
+  const { value, isValid } = inputState
 
   useEffect(() => {
-    onInput(id, value, isValid);
-  }, [id, value, isValid, onInput]);
+    onInput(id, value, isValid)
+  }, [id, value, isValid, onInput])
 
   const changeHandler = (e) => {
     dispatch({
       type: 'INPUT_CHANGE',
       val: e.target.value,
-      validators: props.validators,
-    });
-  };
+      validators: props.validators
+    })
+  }
 
   const touchHandler = () => {
-    dispatch({ type: 'INPUT_TOUCH' });
-  };
+    dispatch({ type: 'INPUT_TOUCH' })
+  }
 
   const element =
     props.element === 'input' ? (
@@ -64,7 +64,7 @@ const Input = (props) => {
         onChange={changeHandler}
         value={inputState.value}
       />
-    );
+    )
 
   return (
     <div
@@ -76,7 +76,7 @@ const Input = (props) => {
       {element}
       {inputState.isTouched && !inputState.isValid && <p>{props.error}</p>}
     </div>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

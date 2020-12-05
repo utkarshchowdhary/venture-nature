@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react'
+import { NavLink } from 'react-router-dom'
 
-import AuthContext from '../../context/AuthContext';
+import AuthContext from '../../context/AuthContext'
 
-import './HeaderMenu.scss';
+import './HeaderMenu.scss'
 
 const HeaderMenu = (props) => {
-  const auth = useContext(AuthContext);
+  const auth = useContext(AuthContext)
 
   return (
     <div className="header-menu" style={props.style}>
@@ -18,7 +18,7 @@ const HeaderMenu = (props) => {
       {!auth.isLoggedIn && <NavLink to="/auth">AUTHENTICATE</NavLink>}
       {auth.isLoggedIn && <button onClick={auth.logout}>LOG OUT</button>}
     </div>
-  );
-};
+  )
+}
 
-export default HeaderMenu;
+export default HeaderMenu

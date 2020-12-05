@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { CSSTransition } from 'react-transition-group';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { CSSTransition } from 'react-transition-group'
 
-import Backdrop from '../Backdrop/Backdrop';
+import Backdrop from '../Backdrop/Backdrop'
 
-import './HeaderSideDrawer.scss';
+import './HeaderSideDrawer.scss'
 
 const HeaderSideDrawer = (props) => {
   const content = (
@@ -22,9 +22,9 @@ const HeaderSideDrawer = (props) => {
         </div>
       </CSSTransition>
     </>
-  );
+  )
 
-  return ReactDOM.createPortal(content, document.getElementById('drawer-hook'));
-};
+  return ReactDOM.createPortal(content, document.getElementById('drawer-hook'))
+}
 
-export default HeaderSideDrawer;
+export default HeaderSideDrawer

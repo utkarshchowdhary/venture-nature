@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import UserItem from '../UserItem/UserItem';
+import UserItem from '../UserItem/UserItem'
 
-import './UsersList.scss';
+import './UsersList.scss'
 
 const UsersList = ({ users }) => {
   return (
@@ -16,7 +16,7 @@ const UsersList = ({ users }) => {
         <UserItem key={user.id} user={user} />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default UsersList;
+export default UsersList

@@ -1,65 +1,65 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react'
 
-import Input from '../Input/Input';
-import Button from '../Button/Button';
+import Input from '../Input/Input'
+import Button from '../Button/Button'
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_EMAIL,
-  VALIDATOR_REQUIRE,
-} from '../../utils/validators';
-import useForm from '../../hooks/useForm';
-import AuthContext from '../../context/AuthContext';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import ErrorModal from '../ErrorModal/ErrorModal';
+  VALIDATOR_REQUIRE
+} from '../../utils/validators'
+import useForm from '../../hooks/useForm'
+import AuthContext from '../../context/AuthContext'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
+import ErrorModal from '../ErrorModal/ErrorModal'
 
-import './SignUp.scss';
+import './SignUp.scss'
 
 const SignUp = () => {
-  const auth = useContext(AuthContext);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const auth = useContext(AuthContext)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const [formState, inputHandler] = useForm(
     {
       name: { value: '', isValid: false },
       email: { value: '', isValid: false },
-      password: { value: '', isValid: false },
+      password: { value: '', isValid: false }
     },
     false
-  );
+  )
 
   const signUpSubmitHandler = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      setIsLoading(true);
+      setIsLoading(true)
       const response = await fetch('http://localhost:5000/users/signup', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           name: formState.inputs.name.value,
           email: formState.inputs.email.value,
-          password: formState.inputs.password.value,
-        }),
-      });
+          password: formState.inputs.password.value
+        })
+      })
 
-      const responseData = await response.json();
+      const responseData = await response.json()
       if (!response.ok) {
-        throw new Error(responseData.message);
+        throw new Error(responseData.message)
       }
-      setIsLoading(false);
-      auth.login();
+      setIsLoading(false)
+      auth.login()
     } catch (err) {
-      setIsLoading(false);
-      setError(err.message);
+      setIsLoading(false)
+      setError(err.message)
     }
-  };
+  }
 
   const errorHandler = () => {
-    setError(null);
-  };
+    setError(null)
+  }
 
   return (
     <>
@@ -106,7 +106,7 @@ const SignUp = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp

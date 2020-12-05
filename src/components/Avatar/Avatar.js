@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import './Avatar.scss';
+import './Avatar.scss'
 
 const Avatar = (props) => {
   return (
@@ -11,7 +11,7 @@ const Avatar = (props) => {
         style={{ width: props.width, height: props.width }}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Avatar;
+export default Avatar

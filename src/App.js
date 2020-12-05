@@ -1,29 +1,29 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
-} from 'react-router-dom';
+  Redirect
+} from 'react-router-dom'
 
-import Header from './components/Header/Header';
-import UsersPage from './pages/UsersPage/UsersPage';
-import NewVenturePage from './pages/NewVenturePage/NewVenturePage';
-import UserVenturesPage from './pages/UserVenturesPage/UserVenturesPage';
-import UpdateVenturePage from './pages/UpdateVenturePage/UpdateVenturePage';
-import SignInAndSignUpPage from './pages/SignInAndSignUpPage/SignInAndSignUpPage';
-import AuthContext from './context/AuthContext';
+import Header from './components/Header/Header'
+import UsersPage from './pages/UsersPage/UsersPage'
+import NewVenturePage from './pages/NewVenturePage/NewVenturePage'
+import UserVenturesPage from './pages/UserVenturesPage/UserVenturesPage'
+import UpdateVenturePage from './pages/UpdateVenturePage/UpdateVenturePage'
+import SignInAndSignUpPage from './pages/SignInAndSignUpPage/SignInAndSignUpPage'
+import AuthContext from './context/AuthContext'
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const login = useCallback(() => {
-    setIsLoggedIn(true);
-  }, []);
+    setIsLoggedIn(true)
+  }, [])
 
   const logout = useCallback(() => {
-    setIsLoggedIn(false);
-  }, []);
+    setIsLoggedIn(false)
+  }, [])
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
@@ -63,7 +63,7 @@ const App = () => {
         </main>
       </Router>
     </AuthContext.Provider>
-  );
-};
+  )
+}
 
-export default App;
+export default App

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import VenturesList from '../../components/VenturesList/VenturesList';
+import VenturesList from '../../components/VenturesList/VenturesList'
 
 const ventures = [
   {
@@ -17,9 +17,9 @@ const ventures = [
       city: 'New York',
       state: 'NY',
       zipcode: '10001-3023',
-      country: 'US',
+      country: 'US'
     },
-    creator: 'u1',
+    creator: 'u1'
   },
   {
     id: 'u2',
@@ -36,18 +36,18 @@ const ventures = [
       city: 'Pisa',
       state: 'Toscana',
       zipcode: '56126',
-      country: 'IT',
+      country: 'IT'
     },
-    creator: 'u2',
-  },
-];
+    creator: 'u2'
+  }
+]
 
 const UserVenturesPage = ({ match }) => {
   const loadedVentures = ventures.filter(
     (venture) => venture.creator === match.params.userId
-  );
+  )
 
-  return <VenturesList ventures={loadedVentures} />;
-};
+  return <VenturesList ventures={loadedVentures} />
+}
 
-export default UserVenturesPage;
+export default UserVenturesPage

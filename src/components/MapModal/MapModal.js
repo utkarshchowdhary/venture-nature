@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { CSSTransition } from 'react-transition-group';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { CSSTransition } from 'react-transition-group'
 
-import Map from '../Map/Map';
-import Backdrop from '../Backdrop/Backdrop';
-import Button from '../Button/Button';
+import Map from '../Map/Map'
+import Backdrop from '../Backdrop/Backdrop'
+import Button from '../Button/Button'
 
-import './MapModal.scss';
+import './MapModal.scss'
 
 const MapModal = ({ show, location, onCancel }) => {
   const content = (
@@ -32,9 +32,9 @@ const MapModal = ({ show, location, onCancel }) => {
         </div>
       </CSSTransition>
     </>
-  );
+  )
 
-  return ReactDOM.createPortal(content, document.getElementById('modal-hook'));
-};
+  return ReactDOM.createPortal(content, document.getElementById('modal-hook'))
+}
 
-export default MapModal;
+export default MapModal
