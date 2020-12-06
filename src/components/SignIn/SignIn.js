@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 
 import Input from '../Input/Input'
 import Button from '../Button/Button'
@@ -7,13 +7,13 @@ import useForm from '../../hooks/useForm'
 import AuthContext from '../../context/AuthContext'
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 import ErrorModal from '../ErrorModal/ErrorModal'
+import useHttpClient from '../../hooks/useHttpClient'
 
 import './SignIn.scss'
 
 const SignIn = () => {
   const auth = useContext(AuthContext)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const { isLoading, error, dispatchRequest, clearError } = useHttpClient()
 
   const [formState, inputHandler] = useForm(
     {
@@ -26,38 +26,26 @@ const SignIn = () => {
   const signInSubmitHandler = async (e) => {
     e.preventDefault()
 
-    setIsLoading(true)
     try {
-      const response = await fetch('http://localhost:5000/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+      await dispatchRequest(
+        'http://localhost:5000/users/login',
+        'POST',
+        JSON.stringify({
           email: formState.inputs.signInEmail.value,
           password: formState.inputs.signInPassword.value
-        })
-      })
+        }),
+        {
+          'Content-Type': 'application/json'
+        }
+      )
 
-      const responseData = await response.json()
-      if (!response.ok) {
-        throw new Error(responseData.message)
-      }
-      setIsLoading(false)
       auth.login()
-    } catch (err) {
-      setIsLoading(false)
-      setError(err.message)
-    }
-  }
-
-  const errorHandler = () => {
-    setError(null)
+    } catch (err) {}
   }
 
   return (
     <>
-      <ErrorModal error={error} onCancel={errorHandler} />
+      <ErrorModal error={error} onCancel={clearError} />
       {isLoading && <LoadingSpinner />}
       <div className="sign-in">
         <h2>I already have an account</h2>

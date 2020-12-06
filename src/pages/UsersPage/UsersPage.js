@@ -3,38 +3,27 @@ import React, { useEffect, useState } from 'react'
 import UsersList from '../../components/UsersList/UsersList'
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import ErrorModal from '../../components/ErrorModal/ErrorModal'
+import useHttpClient from '../../hooks/useHttpClient'
 
 const UsersPage = () => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const { isLoading, error, dispatchRequest, clearError } = useHttpClient()
   const [users, setUsers] = useState([])
 
   useEffect(() => {
     ;(async () => {
-      setIsLoading(true)
       try {
-        const response = await fetch('http://localhost:5000/users')
+        const responseData = await dispatchRequest(
+          'http://localhost:5000/users'
+        )
 
-        const responseData = await response.json()
-        if (!response.ok) {
-          throw new Error(responseData.message)
-        }
-        setIsLoading(false)
         setUsers(responseData.data)
-      } catch (err) {
-        setIsLoading(false)
-        setError(err.message)
-      }
+      } catch (err) {}
     })()
-  }, [])
-
-  const errorHandler = () => {
-    setError(null)
-  }
+  }, [dispatchRequest])
 
   return (
     <>
-      <ErrorModal error={error} onCancel={errorHandler} />
+      <ErrorModal error={error} onCancel={clearError} />
       {isLoading && <LoadingSpinner />}
       {!isLoading && <UsersList users={users} />}
     </>
