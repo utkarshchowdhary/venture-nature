@@ -32,7 +32,7 @@ const SignUp = () => {
     e.preventDefault()
 
     try {
-      await dispatchRequest(
+      const responseData = await dispatchRequest(
         'http://localhost:5000/users/signup',
         'POST',
         JSON.stringify({
@@ -45,7 +45,7 @@ const SignUp = () => {
         }
       )
 
-      auth.login()
+      auth.login(responseData.data.id)
     } catch (err) {}
   }
 

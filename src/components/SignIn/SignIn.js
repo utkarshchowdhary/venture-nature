@@ -27,7 +27,7 @@ const SignIn = () => {
     e.preventDefault()
 
     try {
-      await dispatchRequest(
+      const responseData = await dispatchRequest(
         'http://localhost:5000/users/login',
         'POST',
         JSON.stringify({
@@ -39,7 +39,7 @@ const SignIn = () => {
         }
       )
 
-      auth.login()
+      auth.login(responseData.data.id)
     } catch (err) {}
   }
 
