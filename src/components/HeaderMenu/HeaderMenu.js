@@ -13,7 +13,9 @@ const HeaderMenu = (props) => {
       <NavLink to="/" exact>
         HOME
       </NavLink>
-      {auth.isLoggedIn && <NavLink to="/u1/ventures">MY VENTURES</NavLink>}
+      {auth.isLoggedIn && (
+        <NavLink to={`/${auth.userId}/ventures`}>MY VENTURES</NavLink>
+      )}
       {auth.isLoggedIn && <NavLink to="/ventures/new">ADD VENTURE</NavLink>}
       {!auth.isLoggedIn && <NavLink to="/auth">AUTHENTICATE</NavLink>}
       {auth.isLoggedIn && <button onClick={auth.logout}>LOG OUT</button>}
