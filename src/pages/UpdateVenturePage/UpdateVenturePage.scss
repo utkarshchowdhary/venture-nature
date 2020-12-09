@@ -1,9 +1,29 @@
 .update-venture-page {
   margin: 7rem auto;
-  padding: 1rem;
-  width: 90vw;
-  max-width: 40rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 6px;
-  background: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .update-venture__form {
+    padding: 1rem;
+    width: 90vw;
+    max-width: 40rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 6px;
+    background: #f7f7f7;
+  }
+
+  .update-venture__empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    width: 17rem;
+    height: 8rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 6px;
+    padding: 1rem;
+    color: #f7f4e9;
+    background: #425664;
+  }
 }

@@ -4,10 +4,14 @@ import MapModal from '../MapModal/MapModal'
 import DeleteModal from '../DeleteModal/DeleteModal'
 import Button from '../Button/Button'
 import AuthContext from '../../context/AuthContext'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
+import ErrorModal from '..//ErrorModal/ErrorModal'
+import useHttpClient from '../../hooks/useHttpClient'
 
 import './VentureItem.scss'
 
-const VentureItem = ({ venture }) => {
+const VentureItem = ({ venture, onDeleteVenture }) => {
+  const { isLoading, error, dispatchRequest, clearError } = useHttpClient()
   const auth = useContext(AuthContext)
   const [showMap, setShowMap] = useState(false)
   const [showDeleteWarning, setShowDeleteWarning] = useState(false)
@@ -20,13 +24,23 @@ const VentureItem = ({ venture }) => {
 
   const cancelDeleteWarningHandler = () => setShowDeleteWarning(false)
 
-  const confirmDeleteHandler = () => {
+  const confirmDeleteHandler = async () => {
     setShowDeleteWarning(false)
-    console.log('Deleting...')
+
+    try {
+      await dispatchRequest(
+        `http://localhost:5000/ventures/${venture.id}`,
+        'DELETE'
+      )
+
+      onDeleteVenture(venture.id)
+    } catch (err) {}
   }
 
   return (
     <>
+      <ErrorModal error={error} onCancel={clearError} />
+      {isLoading && <LoadingSpinner />}
       <MapModal
         show={showMap}
         onCancel={closeMapHandler}
@@ -40,7 +54,10 @@ const VentureItem = ({ venture }) => {
       <div className="venture-item">
         <div className="venture-item__content">
           <div className="venture-item__image">
-            <img src={venture.image} alt={venture.title}></img>
+            <img
+              src={`http://localhost:5000/ventures/${venture.id}/image`}
+              alt={venture.title}
+            ></img>
           </div>
           <div className="venture-item__info">
             <h2>{venture.title}</h2>
@@ -51,10 +68,10 @@ const VentureItem = ({ venture }) => {
             <Button inverse onClick={openMapHandler}>
               VIEW ON MAP
             </Button>
-            {auth.isLoggedIn && (
+            {auth.userId === venture.creator && (
               <Button to={`/ventures/${venture.id}`}>EDIT</Button>
             )}
-            {auth.isLoggedIn && (
+            {auth.userId === venture.creator && (
               <Button danger onClick={showDeleteWarningHandler}>
                 DELETE
               </Button>

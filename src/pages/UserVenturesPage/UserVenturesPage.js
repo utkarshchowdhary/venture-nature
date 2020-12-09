@@ -1,53 +1,45 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import VenturesList from '../../components/VenturesList/VenturesList'
-
-const ventures = [
-  {
-    id: 'u1',
-    title: 'Empire State Building',
-    description: 'One of the famous sky scrapers in the world',
-    image: 'https://images.alphacoders.com/302/302721.jpg',
-    address: '20 W 34th St, New York, NY 10001',
-    location: {
-      type: 'Point',
-      coordinates: [-73.985322, 40.748764],
-      formattedAddress: '20 W 34th St, New York, NY 10001-3023, US',
-      street: '20 W 34th St',
-      city: 'New York',
-      state: 'NY',
-      zipcode: '10001-3023',
-      country: 'US'
-    },
-    creator: 'u1'
-  },
-  {
-    id: 'u2',
-    title: 'Leaning Tower Of Pisa',
-    description:
-      "We can't choose where we come from, but we can choose where we go",
-    image: 'https://images6.alphacoders.com/409/409802.jpg',
-    address: 'Piazza del Duomo, 56126 Pisa PI, Italy',
-    location: {
-      type: 'Point',
-      coordinates: [10.39455, 43.72264],
-      formattedAddress: 'Piazza del Duomo, Pisa, Toscana 56126, IT',
-      street: 'Piazza del Duomo',
-      city: 'Pisa',
-      state: 'Toscana',
-      zipcode: '56126',
-      country: 'IT'
-    },
-    creator: 'u2'
-  }
-]
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
+import ErrorModal from '../../components/ErrorModal/ErrorModal'
+import useHttpClient from '../../hooks/useHttpClient'
 
 const UserVenturesPage = ({ match }) => {
-  const loadedVentures = ventures.filter(
-    (venture) => venture.creator === match.params.userId
-  )
+  const [ventures, setVentures] = useState([])
+  const { isLoading, error, dispatchRequest, clearError } = useHttpClient()
+  const userId = match.params.userId
 
-  return <VenturesList ventures={loadedVentures} />
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const responseData = await dispatchRequest(
+          `http://localhost:5000/users/${userId}/ventures`
+        )
+
+        setVentures(responseData.data)
+      } catch (err) {}
+    })()
+  }, [dispatchRequest, userId])
+
+  const ventureDeleteHandler = (deletedVentureId) => {
+    setVentures((prevVentures) =>
+      prevVentures.filter((venture) => venture.id !== deletedVentureId)
+    )
+  }
+
+  return (
+    <>
+      <ErrorModal error={error} onCancel={clearError} />
+      {isLoading && <LoadingSpinner />}
+      {!isLoading && (
+        <VenturesList
+          ventures={ventures}
+          onDeleteVenture={ventureDeleteHandler}
+        />
+      )}
+    </>
+  )
 }
 
 export default UserVenturesPage

@@ -5,7 +5,7 @@ import VentureItem from '../VentureItem/VentureItem'
 
 import './VenturesList.scss'
 
-const VenturesList = ({ ventures }) => {
+const VenturesList = ({ ventures, onDeleteVenture }) => {
   return (
     <div className="ventures-list">
       {ventures.length === 0 && (
@@ -15,7 +15,11 @@ const VenturesList = ({ ventures }) => {
         </div>
       )}
       {ventures.map((venture) => (
-        <VentureItem key={venture.id} venture={venture} />
+        <VentureItem
+          key={venture.id}
+          venture={venture}
+          onDeleteVenture={onDeleteVenture}
+        />
       ))}
     </div>
   )
