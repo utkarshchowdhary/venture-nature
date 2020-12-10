@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 
 import Input from '../Input/Input'
 import Button from '../Button/Button'
+import ImageUpload from '../ImageUpload/ImageUpload'
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_EMAIL,
@@ -23,7 +24,8 @@ const SignUp = () => {
     {
       name: { value: '', isValid: false },
       signUpEmail: { value: '', isValid: false },
-      signUpPassword: { value: '', isValid: false }
+      signUpPassword: { value: '', isValid: false },
+      avatar: { value: null, isValid: false }
     },
     false
   )
@@ -32,17 +34,16 @@ const SignUp = () => {
     e.preventDefault()
 
     try {
+      const formData = new FormData()
+      formData.append('name', formState.inputs.name.value)
+      formData.append('email', formState.inputs.signUpEmail.value)
+      formData.append('password', formState.inputs.signUpPassword.value)
+      formData.append('avatar', formState.inputs.avatar.value)
+
       const responseData = await dispatchRequest(
         'http://localhost:5000/users/signup',
         'POST',
-        JSON.stringify({
-          name: formState.inputs.name.value,
-          email: formState.inputs.signUpEmail.value,
-          password: formState.inputs.signUpPassword.value
-        }),
-        {
-          'Content-Type': 'application/json'
-        }
+        formData
       )
 
       auth.login(responseData.data.id)
@@ -58,6 +59,7 @@ const SignUp = () => {
         <span>Sign up with your name, email and password</span>
         <div className="sign-up__form">
           <form onSubmit={signUpSubmitHandler}>
+            <ImageUpload id="avatar" onInput={inputHandler} />
             <Input
               element="input"
               id="name"

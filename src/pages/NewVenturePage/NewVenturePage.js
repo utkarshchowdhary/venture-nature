@@ -2,6 +2,7 @@ import React from 'react'
 
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
+import ImageUpload from '../../components/ImageUpload/ImageUpload'
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../utils/validators'
 import useForm from '../../hooks/useForm'
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
@@ -16,7 +17,8 @@ const NewVenturePage = ({ history }) => {
     {
       title: { value: '', isValid: false },
       description: { value: '', isValid: false },
-      address: { value: '', isValid: false }
+      address: { value: '', isValid: false },
+      image: { value: null, isValid: false }
     },
     false
   )
@@ -25,18 +27,13 @@ const NewVenturePage = ({ history }) => {
     e.preventDefault()
 
     try {
-      await dispatchRequest(
-        'http://localhost:5000/ventures',
-        'POST',
-        JSON.stringify({
-          title: formState.inputs.title.value,
-          description: formState.inputs.description.value,
-          address: formState.inputs.address.value
-        }),
-        {
-          'Content-Type': 'application/json'
-        }
-      )
+      const formData = new FormData()
+      formData.append('title', formState.inputs.title.value)
+      formData.append('description', formState.inputs.description.value)
+      formData.append('address', formState.inputs.address.value)
+      formData.append('image', formState.inputs.image.value)
+
+      await dispatchRequest('http://localhost:5000/ventures', 'POST', formData)
 
       history.push('/')
     } catch (err) {}
@@ -47,6 +44,7 @@ const NewVenturePage = ({ history }) => {
       <ErrorModal error={error} onCancel={clearError} />
       {isLoading && <LoadingSpinner />}
       <div className="new-venture-page">
+        <ImageUpload id="image" onInput={inputHandler} />
         <form onSubmit={ventureNewSubmitHandler}>
           <Input
             element="input"
