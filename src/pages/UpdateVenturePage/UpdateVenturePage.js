@@ -50,7 +50,8 @@ const UpdateVenturePage = ({ match, history }) => {
           description: formState.inputs.description.value
         }),
         {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${auth.token}`
         }
       )
 

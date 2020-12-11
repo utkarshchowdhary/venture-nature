@@ -15,21 +15,23 @@ import SignInAndSignUpPage from './pages/SignInAndSignUpPage/SignInAndSignUpPage
 import AuthContext from './context/AuthContext'
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [token, setToken] = useState(false)
   const [userId, setUserId] = useState(null)
 
-  const login = useCallback((uid) => {
-    setIsLoggedIn(true)
-    setUserId(uid)
+  const login = useCallback((userId, token) => {
+    setToken(token)
+    setUserId(userId)
   }, [])
 
   const logout = useCallback(() => {
-    setIsLoggedIn(false)
+    setToken(null)
     setUserId(null)
   }, [])
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, userId, login, logout }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn: !!token, token, userId, login, logout }}
+    >
       <Router>
         <Header />
         <main>
@@ -38,7 +40,7 @@ const App = () => {
             <Route
               path="/auth"
               render={() =>
-                !isLoggedIn ? <SignInAndSignUpPage /> : <Redirect to="/" />
+                !token ? <SignInAndSignUpPage /> : <Redirect to="/" />
               }
               exact
             />
@@ -50,14 +52,14 @@ const App = () => {
             <Route
               path="/ventures/new"
               render={() =>
-                isLoggedIn ? <NewVenturePage /> : <Redirect to="/auth" />
+                token ? <NewVenturePage /> : <Redirect to="/auth" />
               }
               exact
             />
             <Route
               path="/ventures/:ventureId"
               render={() =>
-                isLoggedIn ? <UpdateVenturePage /> : <Redirect to="/auth" />
+                token ? <UpdateVenturePage /> : <Redirect to="/auth" />
               }
               exact
             />

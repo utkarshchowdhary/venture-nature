@@ -46,7 +46,7 @@ const SignUp = () => {
         formData
       )
 
-      auth.login(responseData.data.id)
+      auth.login(responseData.data.id, responseData.token)
     } catch (err) {}
   }
 

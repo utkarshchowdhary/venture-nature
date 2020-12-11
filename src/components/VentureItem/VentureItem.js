@@ -30,7 +30,11 @@ const VentureItem = ({ venture, onDeleteVenture }) => {
     try {
       await dispatchRequest(
         `http://localhost:5000/ventures/${venture.id}`,
-        'DELETE'
+        'DELETE',
+        null,
+        {
+          Authorization: `Bearer ${auth.token}`
+        }
       )
 
       onDeleteVenture(venture.id)

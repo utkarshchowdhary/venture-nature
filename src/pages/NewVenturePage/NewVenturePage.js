@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { withRouter } from 'react-router-dom'
 
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 import ImageUpload from '../../components/ImageUpload/ImageUpload'
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../utils/validators'
 import useForm from '../../hooks/useForm'
+import AuthContext from '../../context/AuthContext'
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import ErrorModal from '../../components/ErrorModal/ErrorModal'
 import useHttpClient from '../../hooks/useHttpClient'
@@ -12,6 +14,7 @@ import useHttpClient from '../../hooks/useHttpClient'
 import './NewVenturePage.scss'
 
 const NewVenturePage = ({ history }) => {
+  const auth = useContext(AuthContext)
   const { isLoading, error, dispatchRequest, clearError } = useHttpClient()
   const [formState, inputHandler] = useForm(
     {
@@ -33,7 +36,14 @@ const NewVenturePage = ({ history }) => {
       formData.append('address', formState.inputs.address.value)
       formData.append('image', formState.inputs.image.value)
 
-      await dispatchRequest('http://localhost:5000/ventures', 'POST', formData)
+      await dispatchRequest(
+        'http://localhost:5000/ventures',
+        'POST',
+        formData,
+        {
+          Authorization: `Bearer ${auth.token}`
+        }
+      )
 
       history.push('/')
     } catch (err) {}
@@ -82,4 +92,4 @@ const NewVenturePage = ({ history }) => {
   )
 }
 
-export default NewVenturePage
+export default withRouter(NewVenturePage)
