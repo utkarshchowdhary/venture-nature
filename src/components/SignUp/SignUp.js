@@ -41,7 +41,7 @@ const SignUp = () => {
       formData.append('avatar', formState.inputs.avatar.value)
 
       const responseData = await dispatchRequest(
-        'http://localhost:5000/users/signup',
+        `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
         'POST',
         formData
       )

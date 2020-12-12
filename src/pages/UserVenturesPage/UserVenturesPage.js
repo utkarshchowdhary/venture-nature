@@ -14,7 +14,7 @@ const UserVenturesPage = ({ match }) => {
     ;(async () => {
       try {
         const responseData = await dispatchRequest(
-          `http://localhost:5000/users/${userId}/ventures`
+          `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/ventures`
         )
 
         setVentures(responseData.data)

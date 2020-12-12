@@ -15,7 +15,7 @@ const UserItem = ({ user, history, match }) => {
       <div className="user-item__content">
         <div className="user-item__image">
           <Avatar
-            image={`http://localhost:5000/users/${id}/avatar`}
+            image={`${process.env.REACT_APP_BACKEND_URL}/users/${id}/avatar`}
             alt={name}
           />
         </div>

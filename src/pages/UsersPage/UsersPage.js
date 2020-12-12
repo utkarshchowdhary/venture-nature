@@ -13,7 +13,7 @@ const UsersPage = () => {
     ;(async () => {
       try {
         const responseData = await dispatchRequest(
-          'http://localhost:5000/users'
+          `${process.env.REACT_APP_BACKEND_URL}/users`
         )
 
         setUsers(responseData.data)

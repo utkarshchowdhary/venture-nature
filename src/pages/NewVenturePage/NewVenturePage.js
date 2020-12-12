@@ -37,7 +37,7 @@ const NewVenturePage = ({ history }) => {
       formData.append('image', formState.inputs.image.value)
 
       await dispatchRequest(
-        'http://localhost:5000/ventures',
+        `${process.env.REACT_APP_BACKEND_URL}/ventures`,
         'POST',
         formData,
         {

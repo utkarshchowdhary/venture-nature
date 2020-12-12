@@ -30,7 +30,7 @@ const UpdateVenturePage = ({ match, history }) => {
     ;(async () => {
       try {
         const responseData = await dispatchRequest(
-          `http://localhost:5000/ventures/${ventureId}`
+          `${process.env.REACT_APP_BACKEND_URL}/ventures/${ventureId}`
         )
 
         setVenture(responseData.data)
@@ -43,7 +43,7 @@ const UpdateVenturePage = ({ match, history }) => {
 
     try {
       await dispatchRequest(
-        `http://localhost:5000/ventures/${ventureId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/ventures/${ventureId}`,
         'PATCH',
         JSON.stringify({
           title: formState.inputs.title.value,

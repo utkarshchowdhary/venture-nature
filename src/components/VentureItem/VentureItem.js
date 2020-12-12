@@ -29,7 +29,7 @@ const VentureItem = ({ venture, onDeleteVenture }) => {
 
     try {
       await dispatchRequest(
-        `http://localhost:5000/ventures/${venture.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/ventures/${venture.id}`,
         'DELETE',
         null,
         {
@@ -59,7 +59,7 @@ const VentureItem = ({ venture, onDeleteVenture }) => {
         <div className="venture-item__content">
           <div className="venture-item__image">
             <img
-              src={`http://localhost:5000/ventures/${venture.id}/image`}
+              src={`${process.env.REACT_APP_BACKEND_URL}/ventures/${venture.id}/image`}
               alt={venture.title}
             ></img>
           </div>
