@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import Input from '../../components/Input/Input'
 import Button from '../../components/Button/Button'
+import Input from '../../components/Input/Input'
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../utils/validators'
 import useForm from '../../hooks/useForm'
 import AuthContext from '../../context/AuthContext'

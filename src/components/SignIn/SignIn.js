@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
-import Input from '../Input/Input'
 import Button from '../Button/Button'
+import Input from '../Input/Input'
 import { VALIDATOR_MINLENGTH, VALIDATOR_EMAIL } from '../../utils/validators'
 import useForm from '../../hooks/useForm'
 import AuthContext from '../../context/AuthContext'
