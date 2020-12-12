@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,19 +14,60 @@ import UpdateVenturePage from './pages/UpdateVenturePage/UpdateVenturePage'
 import SignInAndSignUpPage from './pages/SignInAndSignUpPage/SignInAndSignUpPage'
 import AuthContext from './context/AuthContext'
 
+let logoutTimer
+
 const App = () => {
   const [token, setToken] = useState(false)
+  const [tokenTerminationDate, setTokenTerminationDate] = useState(null)
   const [userId, setUserId] = useState(null)
 
-  const login = useCallback((userId, token) => {
+  const login = useCallback((userId, token, expirationDate) => {
     setToken(token)
     setUserId(userId)
+
+    const tokenExpirationDate =
+      expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60)
+
+    setTokenTerminationDate(tokenExpirationDate)
+
+    localStorage.setItem(
+      'userData',
+      JSON.stringify({
+        userId,
+        token,
+        expiration: tokenExpirationDate.toISOString()
+      })
+    )
   }, [])
 
   const logout = useCallback(() => {
     setToken(null)
+    setTokenTerminationDate(null)
     setUserId(null)
+    localStorage.removeItem('userData')
   }, [])
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('userData'))
+
+    if (
+      userData &&
+      userData.token &&
+      new Date(userData.expiration) > new Date()
+    ) {
+      login(userData.userId, userData.token, new Date(userData.expiration))
+    }
+  }, [login])
+
+  useEffect(() => {
+    if (token && tokenTerminationDate) {
+      const remainingTime =
+        tokenTerminationDate.getTime() - new Date().getTime()
+      logoutTimer = setTimeout(logout, remainingTime)
+    } else {
+      clearTimeout(logoutTimer)
+    }
+  }, [logout, token, tokenTerminationDate])
 
   return (
     <AuthContext.Provider
