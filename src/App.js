@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,13 +7,23 @@ import {
 } from 'react-router-dom'
 
 import Header from './components/Header/Header'
-import UsersPage from './pages/UsersPage/UsersPage'
-import NewVenturePage from './pages/NewVenturePage/NewVenturePage'
-import UserVenturesPage from './pages/UserVenturesPage/UserVenturesPage'
-import UpdateVenturePage from './pages/UpdateVenturePage/UpdateVenturePage'
-import SignInAndSignUpPage from './pages/SignInAndSignUpPage/SignInAndSignUpPage'
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 import AuthContext from './context/AuthContext'
 import useAuth from './hooks/useAuth'
+
+const UsersPage = lazy(() => import('./pages/UsersPage/UsersPage'))
+const NewVenturePage = lazy(() =>
+  import('./pages/NewVenturePage/NewVenturePage')
+)
+const UserVenturesPage = lazy(() =>
+  import('./pages/UserVenturesPage/UserVenturesPage')
+)
+const UpdateVenturePage = lazy(() =>
+  import('./pages/UpdateVenturePage/UpdateVenturePage')
+)
+const SignInAndSignUpPage = lazy(() =>
+  import('./pages/SignInAndSignUpPage/SignInAndSignUpPage')
+)
 
 const App = () => {
   const { token, userId, login, logout } = useAuth()
@@ -25,36 +35,38 @@ const App = () => {
       <Router>
         <Header />
         <main>
-          <Switch>
-            <Route path="/" component={UsersPage} exact />
-            <Route
-              path="/auth"
-              render={() =>
-                !token ? <SignInAndSignUpPage /> : <Redirect to="/" />
-              }
-              exact
-            />
-            <Route
-              path="/:userId/ventures"
-              component={UserVenturesPage}
-              exact
-            />
-            <Route
-              path="/ventures/new"
-              render={() =>
-                token ? <NewVenturePage /> : <Redirect to="/auth" />
-              }
-              exact
-            />
-            <Route
-              path="/ventures/:ventureId"
-              render={() =>
-                token ? <UpdateVenturePage /> : <Redirect to="/auth" />
-              }
-              exact
-            />
-            <Redirect to="/" />
-          </Switch>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Switch>
+              <Route path="/" component={UsersPage} exact />
+              <Route
+                path="/auth"
+                render={() =>
+                  !token ? <SignInAndSignUpPage /> : <Redirect to="/" />
+                }
+                exact
+              />
+              <Route
+                path="/:userId/ventures"
+                component={UserVenturesPage}
+                exact
+              />
+              <Route
+                path="/ventures/new"
+                render={() =>
+                  token ? <NewVenturePage /> : <Redirect to="/auth" />
+                }
+                exact
+              />
+              <Route
+                path="/ventures/:ventureId"
+                render={() =>
+                  token ? <UpdateVenturePage /> : <Redirect to="/auth" />
+                }
+                exact
+              />
+              <Redirect to="/" />
+            </Switch>
+          </Suspense>
         </main>
       </Router>
     </AuthContext.Provider>
