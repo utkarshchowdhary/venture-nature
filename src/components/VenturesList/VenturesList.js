@@ -1,17 +1,27 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { withRouter } from 'react-router-dom'
 
 import Button from '../Button/Button'
 import VentureItem from '../VentureItem/VentureItem'
+import AuthContext from '../../context/AuthContext'
 
 import './VenturesList.scss'
 
-const VenturesList = ({ ventures, onDeleteVenture }) => {
+const VenturesList = ({ ventures, onDeleteVenture, match }) => {
+  const auth = useContext(AuthContext)
+  const userId = match.params.userId
+
   return (
     <div className="ventures-list">
       {ventures.length === 0 && (
         <div className="ventures-list__empty">
-          <h2>No Ventures found. Maybe create one?</h2>
-          <Button to="/ventures/new">Share Venture</Button>
+          <h2>
+            No Ventures found.
+            {auth.userId === userId && <span> Maybe create one?</span>}
+          </h2>
+          {auth.userId === userId && (
+            <Button to="/ventures/new">Share Venture</Button>
+          )}
         </div>
       )}
       {ventures.map((venture) => (
@@ -25,4 +35,4 @@ const VenturesList = ({ ventures, onDeleteVenture }) => {
   )
 }
 
-export default VenturesList
+export default withRouter(VenturesList)
