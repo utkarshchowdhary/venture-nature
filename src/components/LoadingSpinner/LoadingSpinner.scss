@@ -4,7 +4,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,9 +15,9 @@
     height: 64px;
     margin: 1px;
     border-radius: 50%;
-    border-width: 6px;
+    border-width: 8px;
     border-style: solid;
-    border-color: #1ba098 transparent #3fd2c7 transparent;
+    border-color: #425664 transparent #c6ad8f transparent;
     animation: lds-dual-ring 1.2s linear infinite;
 
     @keyframes lds-dual-ring {
