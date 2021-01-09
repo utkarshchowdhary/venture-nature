@@ -10,7 +10,9 @@ body {
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url(./assets/radiant-gradient.svg) no-repeat center center fixed;
+  background-image: url(./assets/radiant-gradient.svg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
 }
 
