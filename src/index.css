@@ -10,10 +10,8 @@ body {
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(./assets/radiant-gradient.svg);
-  background-repeat: no-repeat;
+  background-image: url(./assets/alternating-arrowhead.svg);
   background-attachment: fixed;
-  background-size: cover;
 }
 
 code {
