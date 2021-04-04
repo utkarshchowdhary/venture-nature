@@ -1,5 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 
+let logoutTimer
+
 const useAuth = () => {
   const [token, setToken] = useState(null)
   const [tokenTerminationDate, setTokenTerminationDate] = useState(null)
@@ -44,16 +46,14 @@ const useAuth = () => {
   }, [login])
 
   useEffect(() => {
-    let logoutTimer
-
-    if (token && tokenTerminationDate) {
+    if (tokenTerminationDate) {
       const remainingTime =
         tokenTerminationDate.getTime() - new Date().getTime()
       logoutTimer = setTimeout(logout, remainingTime)
     } else {
       clearTimeout(logoutTimer)
     }
-  }, [logout, token, tokenTerminationDate])
+  }, [logout, tokenTerminationDate])
 
   return { token, userId, login, logout }
 }
