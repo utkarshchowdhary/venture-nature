@@ -36,11 +36,7 @@ const useAuth = () => {
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('userData'))
 
-    if (
-      userData &&
-      userData.token &&
-      new Date(userData.expiration) > new Date()
-    ) {
+    if (userData && new Date(userData.expiration) > new Date()) {
       login(userData.userId, userData.token, new Date(userData.expiration))
     }
   }, [login])
