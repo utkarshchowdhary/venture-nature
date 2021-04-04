@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Open Sans Condensed';
+  src: url('./assets/OpenSansCondensed.ttf') format('truetype');
+}
+
 * {
   box-sizing: border-box;
 }
@@ -5,18 +10,9 @@
 body {
   margin: 0;
   background-color: #f7f4e9;
-  font-family: 'Open Sans Condensed', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Open Sans Condensed';
   background-image: url(./assets/alternating-arrowhead.svg);
   background-attachment: fixed;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
 
 main {
