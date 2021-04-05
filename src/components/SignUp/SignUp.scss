@@ -15,7 +15,8 @@
     border-radius: 6px;
     padding: 1rem;
     color: #425664;
-    background: url(../../assets/abstract-envelope.svg) no-repeat center center;
+    background: url(../../assets/abstract-envelope.svg);
+    background-position: center;
     background-size: cover;
 
     form {
