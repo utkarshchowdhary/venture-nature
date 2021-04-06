@@ -18,7 +18,7 @@ const UpdateVenturePage = ({ match, history }) => {
   const auth = useContext(AuthContext)
   const ventureId = match.params.ventureId
 
-  const [formState, inputHandler] = useForm(
+  const { formState, inputHandler } = useForm(
     {
       title: { value: '', isValid: false },
       description: { value: '', isValid: false }

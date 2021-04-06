@@ -20,7 +20,7 @@ const SignUp = () => {
   const auth = useContext(AuthContext)
   const { isLoading, error, dispatchRequest, clearError } = useHttpClient()
 
-  const [formState, inputHandler] = useForm(
+  const { formState, inputHandler } = useForm(
     {
       name: { value: '', isValid: false },
       signUpEmail: { value: '', isValid: false },

@@ -16,7 +16,7 @@ import './NewVenturePage.scss'
 const NewVenturePage = ({ history }) => {
   const auth = useContext(AuthContext)
   const { isLoading, error, dispatchRequest, clearError } = useHttpClient()
-  const [formState, inputHandler] = useForm(
+  const { formState, inputHandler } = useForm(
     {
       title: { value: '', isValid: false },
       description: { value: '', isValid: false },

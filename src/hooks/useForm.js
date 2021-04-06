@@ -44,7 +44,7 @@ const useForm = (initialInputs, initialFormValidity) => {
     })
   }, [])
 
-  return [formState, inputHandler, setFormData]
+  return { formState, inputHandler, setFormData }
 }
 
 export default useForm
