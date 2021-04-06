@@ -9,7 +9,7 @@ import './VenturesList.scss'
 
 const VenturesList = ({ ventures, onDeleteVenture, match }) => {
   const auth = useContext(AuthContext)
-  const userId = match.params.userId
+  const { userId } = match.params
 
   return (
     <div className="ventures-list">

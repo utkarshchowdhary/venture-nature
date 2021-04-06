@@ -16,7 +16,7 @@ const UpdateVenturePage = ({ match, history }) => {
   const { isLoading, error, dispatchRequest, clearError } = useHttpClient()
   const [venture, setVenture] = useState(null)
   const auth = useContext(AuthContext)
-  const ventureId = match.params.ventureId
+  const { ventureId } = match.params
 
   const { formState, inputHandler } = useForm(
     {
