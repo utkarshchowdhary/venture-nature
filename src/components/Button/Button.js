@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 import './Button.scss'
 
 const Button = (props) => {
-  const className = `button button--${props.size || 'default'} ${
-    props.inverse && 'button--inverse'
-  } ${props.danger && 'button--danger'}`
+  const className = `button ${props.inverse && 'button--inverse'} ${
+    props.danger && 'button--danger'
+  }`
 
   if (props.href) {
     return (
