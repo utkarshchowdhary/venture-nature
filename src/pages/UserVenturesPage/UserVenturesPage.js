@@ -8,7 +8,7 @@ import useHttpClient from '../../hooks/useHttpClient'
 const UserVenturesPage = ({ match }) => {
   const [ventures, setVentures] = useState([])
   const { isLoading, error, dispatchRequest, clearError } = useHttpClient()
-  const userId = match.params.userId
+  const { userId } = match.params
 
   useEffect(() => {
     ;(async () => {
