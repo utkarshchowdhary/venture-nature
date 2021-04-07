@@ -4,6 +4,7 @@ const useAuth = () => {
   const [token, setToken] = useState(null)
   const [tokenTerminationDate, setTokenTerminationDate] = useState(null)
   const [userId, setUserId] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   const logoutTimer = useRef(null)
 
@@ -39,6 +40,7 @@ const useAuth = () => {
     if (userData && new Date(userData.expiration) > new Date()) {
       login(userData.userId, userData.token, new Date(userData.expiration))
     }
+    setIsLoading(false)
   }, [login])
 
   useEffect(() => {
@@ -51,7 +53,7 @@ const useAuth = () => {
     }
   }, [logout, tokenTerminationDate])
 
-  return { token, userId, login, logout }
+  return { isLoading, token, userId, login, logout }
 }
 
 export default useAuth
