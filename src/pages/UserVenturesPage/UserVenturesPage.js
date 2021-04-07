@@ -22,9 +22,9 @@ const UserVenturesPage = ({ match }) => {
     })()
   }, [dispatchRequest, userId])
 
-  const ventureDeleteHandler = (id) => {
+  const ventureDeleteHandler = (ventureId) => {
     setVentures((prevVentures) =>
-      prevVentures.filter((venture) => venture.id !== id)
+      prevVentures.filter((venture) => venture.id !== ventureId)
     )
   }
 
