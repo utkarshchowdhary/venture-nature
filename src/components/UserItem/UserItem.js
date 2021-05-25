@@ -12,19 +12,17 @@ const UserItem = ({ user, history, match }) => {
       className="user-item"
       onClick={() => history.push(`${match.path}${id}/ventures`)}
     >
-      <div className="user-item__content">
-        <div className="user-item__image">
-          <Avatar
-            image={`${process.env.REACT_APP_BACKEND_URL}/users/${id}/avatar`}
-            alt={name}
-          />
-        </div>
-        <div className="user-item__info">
-          <h2>{name}</h2>
-          <h3>
-            {ventures.length} {ventures.length === 1 ? 'Venture' : 'Ventures'}
-          </h3>
-        </div>
+      <div className="user-item__image">
+        <Avatar
+          image={`${process.env.REACT_APP_BACKEND_URL}/users/${id}/avatar`}
+          alt={name}
+        />
+      </div>
+      <div className="user-item__info">
+        <h2>{name}</h2>
+        <h3>
+          {ventures.length} {ventures.length === 1 ? 'Venture' : 'Ventures'}
+        </h3>
       </div>
     </div>
   )
