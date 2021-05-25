@@ -2,7 +2,8 @@
   z-index: 100;
   position: fixed;
   top: 22vh;
-  left: 10%;
+  left: 50%;
+  transform: translateX(-50%);
   width: 80vw;
   max-width: 40rem;
   background: #f7f4e9;
@@ -10,7 +11,6 @@
   border-radius: 8px;
 
   .map-modal__header {
-    width: 100%;
     padding: 1rem 0.5rem;
     background: #252669;
     text-align: center;
@@ -23,7 +23,6 @@
 
   .map-modal__content {
     height: 18rem;
-    width: 100%;
     padding: 1rem 0.5rem;
 
     @media (min-width: 768px) {
@@ -34,9 +33,5 @@
   .map-modal__actions {
     padding: 1rem 0.5rem;
     text-align: right;
-  }
-
-  @media (min-width: 768px) {
-    left: calc(50% - 20rem);
   }
 }

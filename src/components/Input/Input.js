@@ -21,13 +21,13 @@ const inputReducer = (state, action) => {
 
 const Input = (props) => {
   const [inputState, dispatch] = useReducer(inputReducer, {
-    value: props.initialValue || '',
+    value: props.initialValue,
     isTouched: false,
-    isValid: props.initialValid || false
+    isValid: props.initialValid
   })
 
   const { id, onInput } = props
-  const { value, isValid } = inputState
+  const { value, isTouched, isValid } = inputState
 
   useEffect(() => {
     onInput(id, value, isValid)
@@ -45,38 +45,40 @@ const Input = (props) => {
     dispatch({ type: 'INPUT_TOUCH' })
   }
 
-  const element =
-    props.element === 'input' ? (
-      <input
-        id={props.id}
-        type={props.type}
-        placeholder={props.placeholder}
-        autoComplete={props.autoComplete}
-        onChange={changeHandler}
-        onBlur={touchHandler}
-        value={inputState.value}
-      />
-    ) : (
-      <textarea
-        id={props.id}
-        rows={props.rows}
-        onBlur={touchHandler}
-        onChange={changeHandler}
-        value={inputState.value}
-      />
-    )
-
   return (
     <div
-      className={`form-control ${
-        inputState.isTouched && !inputState.isValid && 'form-control--invalid'
+      className={`form-control${
+        isTouched && !isValid ? ' form-control--invalid' : ''
       }`}
     >
-      <label htmlFor={props.id}>{props.label}</label>
-      {element}
-      {inputState.isTouched && !inputState.isValid && <p>{props.error}</p>}
+      <label htmlFor={id}>{props.label}</label>
+      {props.element === 'input' ? (
+        <input
+          id={id}
+          type={props.type}
+          placeholder={props.placeholder}
+          autoComplete={props.autoComplete}
+          onChange={changeHandler}
+          onBlur={touchHandler}
+          value={value}
+        />
+      ) : (
+        <textarea
+          id={id}
+          rows={props.rows}
+          onBlur={touchHandler}
+          onChange={changeHandler}
+          value={value}
+        />
+      )}
+      {isTouched && !isValid && <p>{props.error}</p>}
     </div>
   )
+}
+
+Input.defaultProps = {
+  initialValue: '',
+  initialValid: false
 }
 
 export default Input

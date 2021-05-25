@@ -56,31 +56,29 @@ const VentureItem = ({ venture, onDeleteVenture }) => {
         onConfirmDelete={confirmDeleteHandler}
       />
       <div className="venture-item">
-        <div className="venture-item__content">
-          <div className="venture-item__image">
-            <img
-              src={`${process.env.REACT_APP_BACKEND_URL}/ventures/${venture.id}/image`}
-              alt={venture.title}
-            ></img>
-          </div>
-          <div className="venture-item__info">
-            <h2>{venture.title}</h2>
-            <h3>{venture.location.formattedAddress}</h3>
-            <p>{venture.description}</p>
-          </div>
-          <div className="venture-item__actions">
-            <Button inverse onClick={openMapHandler}>
-              VIEW ON MAP
+        <div className="venture-item__image">
+          <img
+            src={`${process.env.REACT_APP_BACKEND_URL}/ventures/${venture.id}/image`}
+            alt={venture.title}
+          ></img>
+        </div>
+        <div className="venture-item__info">
+          <h2>{venture.title}</h2>
+          <h3>{venture.location.formattedAddress}</h3>
+          <p>{venture.description}</p>
+        </div>
+        <div className="venture-item__actions">
+          <Button inverse onClick={openMapHandler}>
+            VIEW ON MAP
+          </Button>
+          {auth.userId === venture.creator && (
+            <Button to={`/ventures/${venture.id}`}>EDIT</Button>
+          )}
+          {auth.userId === venture.creator && (
+            <Button danger onClick={showDeleteWarningHandler}>
+              DELETE
             </Button>
-            {auth.userId === venture.creator && (
-              <Button to={`/ventures/${venture.id}`}>EDIT</Button>
-            )}
-            {auth.userId === venture.creator && (
-              <Button danger onClick={showDeleteWarningHandler}>
-                DELETE
-              </Button>
-            )}
-          </div>
+          )}
         </div>
       </div>
     </>

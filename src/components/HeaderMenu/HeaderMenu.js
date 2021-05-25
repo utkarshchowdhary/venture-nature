@@ -9,7 +9,7 @@ const HeaderMenu = (props) => {
   const auth = useContext(AuthContext)
 
   return (
-    <div className="header-menu" style={props.style}>
+    <div className="header-menu">
       <NavLink to="/" exact>
         HOME
       </NavLink>

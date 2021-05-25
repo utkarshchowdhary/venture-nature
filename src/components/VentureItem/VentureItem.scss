@@ -1,54 +1,43 @@
 .venture-item {
-  margin: 1rem 0;
+  font-weight: 700;
+  background-color: #b4d0e7;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  overflow: hidden;
 
-  .venture-item__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-    border-radius: 6px;
-    font-weight: 700;
-    background-color: #b4d0e7;
-    overflow: hidden;
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
 
-    .venture-item__image {
+  .venture-item__image {
+    width: 100%;
+
+    img {
       width: 100%;
-      height: 12.5rem;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      @media (min-width: 768px) {
-        height: 20rem;
-      }
+      height: 100%;
+      object-fit: cover;
     }
+  }
 
-    .venture-item__info {
-      width: 100%;
-      padding: 1rem;
-      text-align: center;
-      border-bottom: 1px solid #3d7da7;
-    }
+  .venture-item__info {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #3d7da7;
 
     h2,
     h3,
     p {
       margin: 0 0 0.5rem 0;
     }
+  }
 
-    .venture-item__actions {
-      width: 100%;
-      padding: 1rem;
-      text-align: center;
+  .venture-item__actions {
+    padding: 1rem;
+    text-align: center;
 
-      button,
-      a {
-        margin: 0.5rem;
-      }
+    button,
+    a {
+      margin: 0.5rem;
     }
   }
 }

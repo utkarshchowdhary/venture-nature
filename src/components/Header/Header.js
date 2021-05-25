@@ -19,10 +19,7 @@ const Header = () => {
 
   return (
     <>
-      <HeaderSideDrawer show={drawerIsOpen} closeDrawer={closeDrawerHandler}>
-        <HeaderMenu style={{ width: '100%', height: '100%' }} />
-      </HeaderSideDrawer>
-
+      <HeaderSideDrawer show={drawerIsOpen} closeDrawer={closeDrawerHandler} />
       <div className="header">
         <button className="header__menu-btn" onClick={openDrawerHandler}>
           <span />

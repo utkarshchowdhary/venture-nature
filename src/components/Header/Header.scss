@@ -1,5 +1,4 @@
 .header {
-  width: 100vw;
   height: 5rem;
   display: flex;
   justify-content: space-between;
@@ -21,12 +20,20 @@
       outline: none;
     }
 
+    &:hover {
+      span:first-child,
+      span:last-child {
+        width: 2rem;
+      }
+    }
+
     span {
       display: block;
       border-radius: 6px;
       width: 2rem;
       height: 0.3rem;
       background: white;
+      transition: all 0.2s;
 
       &:first-child {
         width: 1.2rem;
