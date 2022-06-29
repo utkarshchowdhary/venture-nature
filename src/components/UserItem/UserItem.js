@@ -21,7 +21,7 @@ const UserItem = ({ user, history, match }) => {
       <div className="user-item__info">
         <h2>{name}</h2>
         <h3>
-          {ventures.length} {ventures.length === 1 ? 'Venture' : 'Ventures'}
+          {ventures} {ventures === 1 ? 'Venture' : 'Ventures'}
         </h3>
       </div>
     </div>
