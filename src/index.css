@@ -3,6 +3,11 @@
   src: url('./assets/OpenSansCondensed.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Bangers';
+  src: url('./assets/Bangers-Regular.ttf') format('truetype');
+}
+
 * {
   box-sizing: border-box;
 }
