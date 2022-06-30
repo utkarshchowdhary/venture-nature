@@ -2,37 +2,41 @@ import { useState, useCallback, useEffect, useRef } from 'react'
 
 const useAuth = () => {
   const [token, setToken] = useState(null)
-  const [tokenTerminationDate, setTokenTerminationDate] = useState(null)
   const [userId, setUserId] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
 
   const logoutTimer = useRef(null)
 
-  const login = useCallback((userId, token, expirationDate) => {
-    setToken(token)
-    setUserId(userId)
-
-    const tokenExpirationDate =
-      expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60)
-
-    setTokenTerminationDate(tokenExpirationDate)
-
-    localStorage.setItem(
-      'userData',
-      JSON.stringify({
-        userId,
-        token,
-        expiration: tokenExpirationDate.toISOString()
-      })
-    )
-  }, [])
-
   const logout = useCallback(() => {
     setToken(null)
-    setTokenTerminationDate(null)
     setUserId(null)
+    clearTimeout(logoutTimer.current)
     localStorage.removeItem('userData')
   }, [])
+
+  const login = useCallback(
+    (
+      userId,
+      token,
+      expirationDate = new Date(new Date().getTime() + 1000 * 60 * 60)
+    ) => {
+      setToken(token)
+      setUserId(userId)
+
+      const remainingTime = expirationDate.getTime() - new Date().getTime()
+      logoutTimer.current = setTimeout(logout, remainingTime)
+
+      localStorage.setItem(
+        'userData',
+        JSON.stringify({
+          userId,
+          token,
+          expiration: expirationDate.toISOString()
+        })
+      )
+    },
+    [logout]
+  )
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('userData'))
@@ -41,17 +45,11 @@ const useAuth = () => {
       login(userData.userId, userData.token, new Date(userData.expiration))
     }
     setIsLoading(false)
-  }, [login])
 
-  useEffect(() => {
-    if (tokenTerminationDate) {
-      const remainingTime =
-        tokenTerminationDate.getTime() - new Date().getTime()
-      logoutTimer.current = setTimeout(logout, remainingTime)
-    } else {
+    return () => {
       clearTimeout(logoutTimer.current)
     }
-  }, [logout, tokenTerminationDate])
+  }, [login])
 
   return { isLoading, token, userId, login, logout }
 }
