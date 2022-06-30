@@ -8,6 +8,11 @@
   src: url('./assets/Bangers.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Acme';
+  src: url('./assets/Acme.ttf') format('truetype');
+}
+
 * {
   box-sizing: border-box;
 }
@@ -15,7 +20,7 @@
 body {
   margin: 0;
   background-color: #f7f4e9;
-  font-family: 'Open Sans Condensed';
+  font-family: 'Acme';
   background-image: url(./assets/alternating-arrowhead.svg);
   background-attachment: fixed;
 }
