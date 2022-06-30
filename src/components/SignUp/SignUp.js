@@ -56,7 +56,7 @@ const SignUp = () => {
       {isLoading && <LoadingSpinner />}
       <div className="sign-up">
         <h2>I do not have a account</h2>
-        <span>Sign up with your name, email and password</span>
+        <span>Sign up with your avatar, name, email and password</span>
         <div className="sign-up__form">
           <form onSubmit={signUpSubmitHandler}>
             <ImageUpload id="avatar" onInput={inputHandler} />
