@@ -1,16 +1,11 @@
 @font-face {
-  font-family: 'Open Sans Condensed';
-  src: url('./assets/OpenSansCondensed.ttf') format('truetype');
+  font-family: 'Acme';
+  src: url('./assets/Acme.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Bangers';
   src: url('./assets/Bangers.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Acme';
-  src: url('./assets/Acme.ttf') format('truetype');
 }
 
 * {
