@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import ReactDOM from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
 
@@ -39,4 +39,4 @@ const ErrorModal = ({ error, onCancel }) => {
   return ReactDOM.createPortal(content, document.getElementById('modal-hook'))
 }
 
-export default ErrorModal
+export default memo(ErrorModal)

@@ -42,9 +42,9 @@ const useHttpClient = () => {
     []
   )
 
-  const clearError = () => {
+  const clearError = useCallback(() => {
     setError(null)
-  }
+  }, [])
 
   useEffect(() => {
     return () => {
