@@ -1,37 +1,40 @@
 export const VALIDATOR_REQUIRE = () => ({ type: 'REQUIRE' })
-export const VALIDATOR_MINLENGTH = (val) => ({
+export const VALIDATOR_MINLENGTH = (value) => ({
   type: 'MINLENGTH',
-  val
+  value
 })
-export const VALIDATOR_MAXLENGTH = (val) => ({
+export const VALIDATOR_MAXLENGTH = (value) => ({
   type: 'MAXLENGTH',
-  val
+  value
 })
-export const VALIDATOR_MIN = (val) => ({ type: 'MIN', val })
-export const VALIDATOR_MAX = (val) => ({ type: 'MAX', val })
+export const VALIDATOR_MIN = (value) => ({ type: 'MIN', value })
+export const VALIDATOR_MAX = (value) => ({ type: 'MAX', value })
 export const VALIDATOR_EMAIL = () => ({ type: 'EMAIL' })
 
 export const validate = (value, validators) => {
-  let isValid = true
   for (const validator of validators) {
-    if (validator.type === 'REQUIRE') {
-      isValid = isValid && value.trim().length > 0
-    }
-    if (validator.type === 'MINLENGTH') {
-      isValid = isValid && value.trim().length >= validator.val
-    }
-    if (validator.type === 'MAXLENGTH') {
-      isValid = isValid && value.trim().length <= validator.val
-    }
-    if (validator.type === 'MIN') {
-      isValid = isValid && +value >= validator.val
-    }
-    if (validator.type === 'MAX') {
-      isValid = isValid && +value <= validator.val
-    }
-    if (validator.type === 'EMAIL') {
-      isValid = isValid && /^\S+@\S+\.\S+$/.test(value)
+    switch (validator.type) {
+      case 'REQUIRE':
+        if (!value.trim().length) return false
+        break
+      case 'MINLENGTH':
+        if (value.trim().length < validator.value) return false
+        break
+      case 'MAXLENGTH':
+        if (value.trim().length > validator.value) return false
+        break
+      case 'MIN':
+        if (+value < validator.value) return false
+        break
+      case 'MAX':
+        if (+value > validator.value) return false
+        break
+      case 'EMAIL':
+        if (!/^\S+@\S+\.\S+$/.test(value)) return false
+        break
+      default:
+        throw new Error(`unkown validator type: ${validator.type}`)
     }
   }
-  return isValid
+  return true
 }
