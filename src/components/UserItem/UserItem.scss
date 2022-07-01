@@ -1,12 +1,13 @@
 .user-item {
   margin: 1rem;
-  min-width: 17rem;
+  width: 17rem;
   height: 8rem;
   background: #283845;
   color: #f7f4e9;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 6px;
 

@@ -24,8 +24,7 @@ const UsersPage = () => {
   return (
     <>
       <ErrorModal error={error} onCancel={clearError} />
-      {isLoading && <LoadingSpinner />}
-      {!isLoading && <UsersList users={users} />}
+      {isLoading ? <LoadingSpinner /> : <UsersList users={users} />}
     </>
   )
 }

@@ -7,6 +7,7 @@ import './UserItem.scss'
 
 const UserItem = ({ user, history, match }) => {
   const { id, name, ventures } = user
+
   return (
     <div
       className="user-item"

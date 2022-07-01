@@ -9,6 +9,7 @@ const useHttpClient = () => {
   const dispatchRequest = useCallback(
     async (url, method = 'GET', body = null, headers = {}) => {
       setIsLoading(true)
+
       const httpAbortCtrl = new AbortController()
       activeHttpRequests.current.push(httpAbortCtrl)
 

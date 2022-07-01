@@ -44,6 +44,7 @@ const useAuth = () => {
     if (userData && new Date(userData.expiration) > new Date()) {
       login(userData.userId, userData.token, new Date(userData.expiration))
     }
+
     setIsLoading(false)
 
     return () => {

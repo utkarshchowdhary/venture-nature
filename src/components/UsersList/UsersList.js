@@ -7,7 +7,7 @@ import './UsersList.scss'
 const UsersList = ({ users }) => {
   return (
     <div className="users-list">
-      {users.length === 0 && (
+      {!users.length && (
         <div className="users-list__empty">
           <h2>No users found</h2>
         </div>
