@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 
-const useAuth = () => {
+const useAuth = (duration) => {
   const [token, setToken] = useState(null)
   const [userId, setUserId] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -18,7 +18,7 @@ const useAuth = () => {
     (
       userId,
       token,
-      expirationDate = new Date(new Date().getTime() + 1000 * 60 * 60)
+      expirationDate = new Date(new Date().getTime() + duration)
     ) => {
       setToken(token)
       setUserId(userId)
@@ -35,7 +35,7 @@ const useAuth = () => {
         })
       )
     },
-    [logout]
+    [duration, logout]
   )
 
   useEffect(() => {

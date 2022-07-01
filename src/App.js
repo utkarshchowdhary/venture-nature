@@ -26,7 +26,7 @@ const SignInAndSignUpPage = lazy(() =>
 )
 
 const App = () => {
-  const { isLoading, token, userId, login, logout } = useAuth()
+  const { isLoading, token, userId, login, logout } = useAuth(60 * 60 * 1000)
 
   return (
     <AuthContext.Provider
