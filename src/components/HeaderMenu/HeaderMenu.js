@@ -5,7 +5,7 @@ import AuthContext from '../../context/AuthContext'
 
 import './HeaderMenu.scss'
 
-const HeaderMenu = (props) => {
+const HeaderMenu = () => {
   const auth = useContext(AuthContext)
 
   return (
