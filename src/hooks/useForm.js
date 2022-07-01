@@ -3,22 +3,24 @@ import { useCallback, useReducer } from 'react'
 const formReducer = (state, action) => {
   switch (action.type) {
     case 'INPUT_CHANGE':
-      let formIsValid = true
-      for (const inputId in state.inputs) {
-        if (inputId === action.inputId) {
-          formIsValid = formIsValid && action.isValid
-        } else {
-          formIsValid = formIsValid && state.inputs[inputId].isValid
-        }
-      }
-      return {
+      const newState = {
         ...state,
         inputs: {
           ...state.inputs,
           [action.inputId]: { value: action.value, isValid: action.isValid }
         },
-        isValid: formIsValid
+        isValid: action.isValid
       }
+      if (!action.isValid) {
+        return newState
+      }
+      for (const inputId in state.inputs) {
+        if (inputId !== action.inputId && !state.inputs[inputId].isValid) {
+          newState.isValid = false
+          return newState
+        }
+      }
+      return newState
     case 'SET_DATA':
       return { inputs: action.inputs, isValid: action.formIsValid }
     default:
