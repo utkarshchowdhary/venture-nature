@@ -13,7 +13,7 @@ const VenturesList = ({ ventures, onDeleteVenture, match }) => {
 
   return (
     <div className="ventures-list">
-      {ventures.length === 0 && (
+      {!ventures.length && (
         <div className="ventures-list__empty">
           <h2>
             No Ventures found.

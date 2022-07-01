@@ -17,11 +17,9 @@ const VentureItem = ({ venture, onDeleteVenture }) => {
   const [showDeleteWarning, setShowDeleteWarning] = useState(false)
 
   const openMapHandler = () => setShowMap(true)
-
   const closeMapHandler = () => setShowMap(false)
 
   const showDeleteWarningHandler = () => setShowDeleteWarning(true)
-
   const cancelDeleteWarningHandler = () => setShowDeleteWarning(false)
 
   const confirmDeleteHandler = async () => {
@@ -56,12 +54,10 @@ const VentureItem = ({ venture, onDeleteVenture }) => {
         onConfirmDelete={confirmDeleteHandler}
       />
       <div className="venture-item">
-        <div className="venture-item__image">
-          <img
-            src={`${process.env.REACT_APP_BACKEND_URL}/ventures/${venture.id}/image`}
-            alt={venture.title}
-          ></img>
-        </div>
+        <img
+          src={`${process.env.REACT_APP_BACKEND_URL}/ventures/${venture.id}/image`}
+          alt={venture.title}
+        ></img>
         <div className="venture-item__info">
           <h2>{venture.title}</h2>
           <h3>{venture.location.formattedAddress}</h3>

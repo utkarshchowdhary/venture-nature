@@ -31,8 +31,9 @@ const UserVenturesPage = ({ match }) => {
   return (
     <>
       <ErrorModal error={error} onCancel={clearError} />
-      {isLoading && <LoadingSpinner />}
-      {!isLoading && (
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
         <VenturesList
           ventures={ventures}
           onDeleteVenture={ventureDeleteHandler}

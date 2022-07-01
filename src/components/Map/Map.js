@@ -3,9 +3,9 @@ import mapboxgl from 'mapbox-gl'
 
 import './Map.scss'
 
-const Map = ({ center, zoom }) => {
-  mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 
+const Map = ({ center, zoom }) => {
   const mapContainerRef = useRef(null)
 
   // Initialize map when component mounts
