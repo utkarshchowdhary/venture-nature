@@ -16,6 +16,8 @@ const ImageUpload = ({ id, onInput }) => {
   const { file, isValid } = fileState
 
   useEffect(() => {
+    if (!file) return
+
     onInput(id, file, isValid)
   }, [id, file, isValid, onInput])
 

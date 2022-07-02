@@ -18,7 +18,7 @@ const UpdateVenturePage = ({ match, history }) => {
   const auth = useContext(AuthContext)
   const { ventureId } = match.params
 
-  const { formState, inputHandler } = useForm(
+  const { formState, inputHandler, setFormData } = useForm(
     {
       title: { value: '', isValid: false },
       description: { value: '', isValid: false }
@@ -29,14 +29,21 @@ const UpdateVenturePage = ({ match, history }) => {
   useEffect(() => {
     ;(async () => {
       try {
-        const responseData = await dispatchRequest(
+        const { data } = await dispatchRequest(
           `${process.env.REACT_APP_BACKEND_URL}/ventures/${ventureId}`
         )
 
-        setVenture(responseData.data)
+        setVenture(data)
+        setFormData(
+          {
+            title: { value: data.title, isValid: true },
+            description: { value: data.description, isValid: true }
+          },
+          true
+        )
       } catch (err) {}
     })()
-  }, [dispatchRequest, ventureId])
+  }, [dispatchRequest, setFormData, ventureId])
 
   const ventureUpdateSubmitHandler = async (e) => {
     e.preventDefault()

@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react'
+import React, { useReducer, useEffect, useRef } from 'react'
 
 import { validate } from '../../utils/validators'
 
@@ -26,11 +26,17 @@ const Input = (props) => {
     isValid: props.initialValid
   })
 
+  const mountedRef = useRef(false)
+
   const { id, onInput } = props
   const { value, isTouched, isValid } = inputState
 
   useEffect(() => {
-    onInput(id, value, isValid)
+    if (mountedRef.current) {
+      onInput(id, value, isValid)
+    } else {
+      mountedRef.current = true
+    }
   }, [id, value, isValid, onInput])
 
   const changeHandler = (e) => {
