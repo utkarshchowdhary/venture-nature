@@ -20,9 +20,8 @@ const ImageUpload = ({ id, onInput }) => {
   }, [id, file, isValid, onInput])
 
   useEffect(() => {
-    if (!file) {
-      return
-    }
+    if (!file) return
+
     const fileReader = new FileReader()
     fileReader.onload = () => {
       setPreviewUrl(fileReader.result)
@@ -35,8 +34,10 @@ const ImageUpload = ({ id, onInput }) => {
   }
 
   const pickedHandler = (e) => {
-    if (e.target.files && e.target.files.length === 1) {
-      setFileState({ ...fileState, file: e.target.files[0], isValid: true })
+    const [file] = e.target.files
+
+    if (file) {
+      setFileState({ file, isValid: true })
     }
   }
 
@@ -45,14 +46,16 @@ const ImageUpload = ({ id, onInput }) => {
       <input
         id={id}
         ref={filePickerRef}
-        style={{ display: 'none' }}
         type="file"
         accept="image/*"
         onChange={pickedHandler}
       />
       <div className="image-upload__preview">
-        {previewUrl && <img src={previewUrl} alt="preview"></img>}
-        {!previewUrl && <p>Please pick an image.</p>}
+        {previewUrl ? (
+          <img src={previewUrl} alt="preview"></img>
+        ) : (
+          <p>Please pick an image.</p>
+        )}
       </div>
       <Button type="button" onClick={pickImageHandler}>
         PICK IMAGE
