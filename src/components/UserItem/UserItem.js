@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { withRouter } from 'react-router-dom'
 
+import AuthContext from '../../context/AuthContext'
 import Avatar from '../Avatar/Avatar'
 
 import './UserItem.scss'
 
 const UserItem = ({ user, history, match }) => {
+  const auth = useContext(AuthContext)
   const { id, name, ventures } = user
 
   return (
     <div
-      className="user-item"
+      className={`user-item${auth.userId === user.id ? ' active' : ''}`}
       onClick={() => history.push(`${match.path}${id}/ventures`)}
     >
       <div className="user-item__image">
