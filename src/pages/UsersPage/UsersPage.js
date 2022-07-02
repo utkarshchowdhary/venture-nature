@@ -12,11 +12,11 @@ const UsersPage = () => {
   useEffect(() => {
     ;(async () => {
       try {
-        const responseData = await dispatchRequest(
+        const { data } = await dispatchRequest(
           `${process.env.REACT_APP_BACKEND_URL}/users`
         )
 
-        setUsers(responseData.data)
+        setUsers(data)
       } catch (err) {}
     })()
   }, [dispatchRequest])

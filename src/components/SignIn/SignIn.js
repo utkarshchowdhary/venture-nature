@@ -27,7 +27,10 @@ const SignIn = () => {
     e.preventDefault()
 
     try {
-      const responseData = await dispatchRequest(
+      const {
+        token,
+        data: { id }
+      } = await dispatchRequest(
         `${process.env.REACT_APP_BACKEND_URL}/users/login`,
         'POST',
         JSON.stringify({
@@ -39,7 +42,7 @@ const SignIn = () => {
         }
       )
 
-      auth.login(responseData.data.id, responseData.token)
+      auth.login(id, token)
     } catch (err) {}
   }
 

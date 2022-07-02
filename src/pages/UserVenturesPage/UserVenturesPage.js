@@ -13,11 +13,11 @@ const UserVenturesPage = ({ match }) => {
   useEffect(() => {
     ;(async () => {
       try {
-        const responseData = await dispatchRequest(
+        const { data } = await dispatchRequest(
           `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/ventures`
         )
 
-        setVentures(responseData.data)
+        setVentures(data)
       } catch (err) {}
     })()
   }, [dispatchRequest, userId])

@@ -40,13 +40,16 @@ const SignUp = () => {
       formData.append('password', formState.inputs.signUpPassword.value)
       formData.append('avatar', formState.inputs.avatar.value)
 
-      const responseData = await dispatchRequest(
+      const {
+        token,
+        data: { id }
+      } = await dispatchRequest(
         `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
         'POST',
         formData
       )
 
-      auth.login(responseData.data.id, responseData.token)
+      auth.login(id, token)
     } catch (err) {}
   }
 
