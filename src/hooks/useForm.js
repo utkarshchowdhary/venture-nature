@@ -10,13 +10,16 @@ const formReducer = (state, action) => {
         },
         isValid: state.isValid
       }
-      if (action.isValid === state.inputs[action.inputId].isValid) {
-        return newState
-      }
+      // current is not valid -> gross validity not valid
       if (!action.isValid) {
         newState.isValid = false
         return newState
       }
+      // current is valid, previous was also valid -> gross validity unchanged
+      if (state.inputs[action.inputId].isValid) {
+        return newState
+      }
+      // current is valid, previous was not valid -> gross validity TBD
       for (const inputId in state.inputs) {
         if (inputId !== action.inputId && !state.inputs[inputId].isValid) {
           newState.isValid = false
