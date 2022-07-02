@@ -11,8 +11,8 @@ const inputReducer = (state, action) => {
     case 'INPUT_CHANGE':
       return {
         ...state,
-        value: action.val,
-        isValid: validate(action.val, action.validators)
+        value: action.value,
+        isValid: validate(action.value, action.validators)
       }
     default:
       return state
@@ -36,7 +36,7 @@ const Input = (props) => {
   const changeHandler = (e) => {
     dispatch({
       type: 'INPUT_CHANGE',
-      val: e.target.value,
+      value: e.target.value,
       validators: props.validators
     })
   }
