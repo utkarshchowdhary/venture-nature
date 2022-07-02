@@ -4,7 +4,6 @@ const formReducer = (state, action) => {
   switch (action.type) {
     case 'INPUT_CHANGE':
       const newState = {
-        ...state,
         inputs: {
           ...state.inputs,
           [action.inputId]: { value: action.value, isValid: action.isValid }
