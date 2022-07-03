@@ -34,7 +34,7 @@ const MapModal = ({ show, location, onCancel }) => {
     </>
   )
 
-  return ReactDOM.createPortal(content, document.getElementById('modal-hook'))
+  return ReactDOM.createPortal(content, document.getElementById('modal-root'))
 }
 
 export default MapModal

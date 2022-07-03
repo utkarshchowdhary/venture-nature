@@ -41,7 +41,7 @@ const DeleteModal = ({ show, onCancel, onConfirmDelete }) => {
     </>
   )
 
-  return ReactDOM.createPortal(content, document.getElementById('modal-hook'))
+  return ReactDOM.createPortal(content, document.getElementById('modal-root'))
 }
 
 export default DeleteModal

@@ -25,7 +25,7 @@ const HeaderSideDrawer = (props) => {
     </>
   )
 
-  return ReactDOM.createPortal(content, document.getElementById('drawer-hook'))
+  return ReactDOM.createPortal(content, document.getElementById('drawer-root'))
 }
 
 export default HeaderSideDrawer
