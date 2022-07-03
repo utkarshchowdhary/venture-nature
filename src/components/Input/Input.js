@@ -1,90 +1,53 @@
-import React, { useReducer, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 
 import { validate } from '../../utils/validators'
 
 import './Input.scss'
 
-const inputReducer = (state, action) => {
-  switch (action.type) {
-    case 'INPUT_TOUCH':
-      return { ...state, isTouched: true }
-    case 'INPUT_CHANGE':
-      return {
-        ...state,
-        value: action.value,
-        isValid: validate(action.value, action.validators)
-      }
-    default:
-      return state
-  }
-}
-
 const Input = (props) => {
-  const [inputState, dispatch] = useReducer(inputReducer, {
-    value: props.initialValue,
-    isTouched: false,
-    isValid: props.initialValid
-  })
-
-  const mountedRef = useRef(false)
-
-  const { id, onInput } = props
-  const { value, isTouched, isValid } = inputState
-
-  useEffect(() => {
-    if (mountedRef.current) {
-      onInput(id, value, isValid)
-    } else {
-      mountedRef.current = true
-    }
-  }, [id, value, isValid, onInput])
+  const [isTouched, setIsTouched] = useState(false)
 
   const changeHandler = (e) => {
-    dispatch({
-      type: 'INPUT_CHANGE',
-      value: e.target.value,
-      validators: props.validators
-    })
+    props.onInput(
+      props.id,
+      e.target.value,
+      validate(e.target.value, props.validators)
+    )
   }
 
   const touchHandler = () => {
-    dispatch({ type: 'INPUT_TOUCH' })
+    setIsTouched(true)
   }
 
   return (
     <div
       className={`form-control${
-        isTouched && !isValid ? ' form-control--invalid' : ''
+        isTouched && !props.isValid ? ' form-control--invalid' : ''
       }`}
     >
-      <label htmlFor={id}>{props.label}</label>
+      <label htmlFor={props.id}>{props.label}</label>
       {props.element === 'input' ? (
         <input
-          id={id}
+          id={props.id}
           type={props.type}
           placeholder={props.placeholder}
           autoComplete={props.autoComplete}
           onChange={changeHandler}
           onBlur={touchHandler}
-          value={value}
+          value={props.value}
         />
       ) : (
         <textarea
-          id={id}
+          id={props.id}
           rows={props.rows}
           onBlur={touchHandler}
           onChange={changeHandler}
-          value={value}
+          value={props.value}
         />
       )}
-      {isTouched && !isValid && <p>{props.error}</p>}
+      {isTouched && !props.isValid && <p>{props.error}</p>}
     </div>
   )
-}
-
-Input.defaultProps = {
-  initialValue: '',
-  initialValid: false
 }
 
 export default Input

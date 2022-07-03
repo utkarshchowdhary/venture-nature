@@ -1,35 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 
 import Button from '../Button/Button'
 
 import './ImageUpload.scss'
 
 const ImageUpload = ({ id, onInput }) => {
-  const [fileState, setFileState] = useState({
-    file: null,
-    isValid: false
-  })
   const [previewUrl, setPreviewUrl] = useState()
 
   const filePickerRef = useRef()
-
-  const { file, isValid } = fileState
-
-  useEffect(() => {
-    if (!file) return
-
-    onInput(id, file, isValid)
-  }, [id, file, isValid, onInput])
-
-  useEffect(() => {
-    if (!file) return
-
-    const fileReader = new FileReader()
-    fileReader.onload = () => {
-      setPreviewUrl(fileReader.result)
-    }
-    fileReader.readAsDataURL(file)
-  }, [file])
 
   const pickImageHandler = () => {
     filePickerRef.current.click()
@@ -39,7 +17,15 @@ const ImageUpload = ({ id, onInput }) => {
     const [file] = e.target.files
 
     if (file) {
-      setFileState({ file, isValid: true })
+      onInput(id, file, true)
+
+      const fileReader = new FileReader()
+
+      fileReader.onload = () => {
+        setPreviewUrl(fileReader.result)
+      }
+
+      fileReader.readAsDataURL(file)
     }
   }
 

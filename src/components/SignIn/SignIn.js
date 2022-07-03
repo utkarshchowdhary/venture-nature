@@ -61,7 +61,9 @@ const SignIn = () => {
               type="email"
               label="Email"
               autoComplete="username"
+              value={formState.inputs.signInEmail.value}
               validators={[VALIDATOR_EMAIL()]}
+              isValid={formState.inputs.signInEmail.isValid}
               error="Please enter a valid email."
               onInput={inputHandler}
             />
@@ -71,7 +73,9 @@ const SignIn = () => {
               type="password"
               label="Password"
               autoComplete="current-password"
+              value={formState.inputs.signInPassword.value}
               validators={[VALIDATOR_MINLENGTH(8)]}
+              isValid={formState.inputs.signInPassword.isValid}
               error="Please enter a valid password (at least 8 characters)."
               onInput={inputHandler}
             />

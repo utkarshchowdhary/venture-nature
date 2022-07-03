@@ -61,7 +61,9 @@ const NewVenturePage = ({ history }) => {
             id="title"
             type="text"
             label="Title"
+            value={formState.inputs.title.value}
             validators={[VALIDATOR_REQUIRE()]}
+            isValid={formState.inputs.title.isValid}
             error="Please enter a valid title."
             onInput={inputHandler}
           />
@@ -70,7 +72,9 @@ const NewVenturePage = ({ history }) => {
             rows={3}
             id="description"
             label="Description"
+            value={formState.inputs.description.value}
             validators={[VALIDATOR_MINLENGTH(5)]}
+            isValid={formState.inputs.description.isValid}
             error="Please enter a valid description (at least 5 characters)."
             onInput={inputHandler}
           />
@@ -79,7 +83,9 @@ const NewVenturePage = ({ history }) => {
             id="address"
             type="text"
             label="Address"
+            value={formState.inputs.address.value}
             validators={[VALIDATOR_REQUIRE()]}
+            isValid={formState.inputs.address.isValid}
             error="Please enter a valid address."
             onInput={inputHandler}
           />

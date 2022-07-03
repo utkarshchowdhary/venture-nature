@@ -68,7 +68,9 @@ const SignUp = () => {
               id="name"
               type="text"
               label="Name"
+              value={formState.inputs.name.value}
               validators={[VALIDATOR_REQUIRE()]}
+              isValid={formState.inputs.name.isValid}
               error="Please enter a valid name."
               onInput={inputHandler}
             />
@@ -78,7 +80,9 @@ const SignUp = () => {
               type="email"
               label="Email"
               autoComplete="username"
+              value={formState.inputs.signUpEmail.value}
               validators={[VALIDATOR_EMAIL()]}
+              isValid={formState.inputs.signUpEmail.isValid}
               error="Please enter a valid email."
               onInput={inputHandler}
             />
@@ -88,7 +92,9 @@ const SignUp = () => {
               type="password"
               label="Password"
               autoComplete="new-password"
+              value={formState.inputs.signUpPassword.value}
               validators={[VALIDATOR_MINLENGTH(8)]}
+              isValid={formState.inputs.signUpPassword.isValid}
               error="Please enter a valid password (at least 8 characters)."
               onInput={inputHandler}
             />
