@@ -1,9 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 
 const useAuth = (expiresIn) => {
+  const [isChecking, setIsChecking] = useState(true)
   const [token, setToken] = useState('')
   const [userId, setUserId] = useState('')
-  const [isChecking, setIsChecking] = useState(true)
 
   const logoutTimer = useRef()
 
