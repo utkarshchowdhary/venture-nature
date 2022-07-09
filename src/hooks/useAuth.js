@@ -1,15 +1,15 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 
 const useAuth = (expiresIn) => {
-  const [token, setToken] = useState(null)
-  const [userId, setUserId] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [token, setToken] = useState('')
+  const [userId, setUserId] = useState('')
+  const [isChecking, setIsChecking] = useState(true)
 
-  const logoutTimer = useRef(null)
+  const logoutTimer = useRef()
 
   const logout = useCallback(() => {
-    setToken(null)
-    setUserId(null)
+    setToken('')
+    setUserId('')
     clearTimeout(logoutTimer.current)
     localStorage.removeItem('userData')
   }, [])
@@ -45,14 +45,14 @@ const useAuth = (expiresIn) => {
       login(userData.userId, userData.token, new Date(userData.expiration))
     }
 
-    setIsLoading(false)
+    setIsChecking(false)
 
     return () => {
       clearTimeout(logoutTimer.current)
     }
   }, [login])
 
-  return { isLoading, token, userId, login, logout }
+  return { isChecking, token, userId, login, logout }
 }
 
 export default useAuth

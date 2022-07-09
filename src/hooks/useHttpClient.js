@@ -2,7 +2,7 @@ import { useState, useCallback, useRef, useEffect } from 'react'
 
 const useHttpClient = () => {
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState('')
 
   const activeHttpRequests = useRef([])
 
@@ -43,7 +43,7 @@ const useHttpClient = () => {
   )
 
   const clearError = useCallback(() => {
-    setError(null)
+    setError('')
   }, [])
 
   useEffect(() => {

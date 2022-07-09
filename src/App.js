@@ -26,11 +26,18 @@ const SignInAndSignUpPage = lazy(() =>
 )
 
 const App = () => {
-  const { isLoading, token, userId, login, logout } = useAuth(60 * 60 * 1000)
+  const { isChecking, token, userId, login, logout } = useAuth(60 * 60 * 1000)
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn: !!token, token, userId, login, logout }}
+      value={{
+        isChecking,
+        isLoggedIn: !!token,
+        token,
+        userId,
+        login,
+        logout
+      }}
     >
       <Router>
         <Header />
@@ -41,7 +48,13 @@ const App = () => {
               <Route
                 path="/auth"
                 render={() =>
-                  token ? <Redirect to="/" /> : <SignInAndSignUpPage />
+                  isChecking ? (
+                    <LoadingSpinner />
+                  ) : token ? (
+                    <Redirect to="/" />
+                  ) : (
+                    <SignInAndSignUpPage />
+                  )
                 }
                 exact
               />
@@ -53,7 +66,7 @@ const App = () => {
               <Route
                 path="/ventures/new"
                 render={() =>
-                  isLoading ? (
+                  isChecking ? (
                     <LoadingSpinner />
                   ) : token ? (
                     <NewVenturePage />
@@ -66,7 +79,7 @@ const App = () => {
               <Route
                 path="/ventures/:ventureId"
                 render={() =>
-                  isLoading ? (
+                  isChecking ? (
                     <LoadingSpinner />
                   ) : token ? (
                     <UpdateVenturePage />
