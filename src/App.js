@@ -41,7 +41,7 @@ const App = () => {
               <Route
                 path="/auth"
                 render={() =>
-                  !token ? <SignInAndSignUpPage /> : <Redirect to="/" />
+                  token ? <Redirect to="/" /> : <SignInAndSignUpPage />
                 }
                 exact
               />
