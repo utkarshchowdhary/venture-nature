@@ -56,13 +56,8 @@ const App = () => {
                     <SignInAndSignUpPage />
                   )
                 }
-                exact
               />
-              <Route
-                path="/:userId/ventures"
-                component={UserVenturesPage}
-                exact
-              />
+              <Route path="/:userId/ventures" component={UserVenturesPage} />
               <Route
                 path="/ventures/new"
                 render={() =>
@@ -74,7 +69,6 @@ const App = () => {
                     <Redirect to="/auth" />
                   )
                 }
-                exact
               />
               <Route
                 path="/ventures/:ventureId"
@@ -87,7 +81,6 @@ const App = () => {
                     <Redirect to="/auth" />
                   )
                 }
-                exact
               />
               <Redirect to="/" />
             </Switch>
