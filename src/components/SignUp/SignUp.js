@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState,useEffect,useContext } from 'react'
 
 import Button from '../Button/Button'
 import Input from '../Input/Input'
@@ -19,7 +19,7 @@ import './SignUp.scss'
 const SignUp = () => {
   const auth = useContext(AuthContext)
   const { isLoading, error, dispatchRequest, clearError } = useHttpClient()
-
+  const [isLogin,setIsLogin]=useState(false);
   const { formState, inputHandler } = useForm(
     {
       name: { value: '', isValid: false },
