@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
 
 import './Button.scss'
 
 const Button = (props) => {
+  const [buttonName,setButtonName]=useState('click here');
   const className = `button${props.inverse ? ' button--inverse' : ''}${
     props.danger ? ' button--danger' : ''
   }`
