@@ -20,6 +20,10 @@ const SignUp = () => {
   const auth = useContext(AuthContext)
   const { isLoading, error, dispatchRequest, clearError } = useHttpClient()
   const [isLogin,setIsLogin]=useState(false);
+  
+  useEffect(()=>{
+    setsetIsLogin(true);
+  },[])
   const { formState, inputHandler } = useForm(
     {
       name: { value: '', isValid: false },
